@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+  },
+  "name": "itest",
+  "maintainer_email": "fabien@web-essentials.asia",
+  "attributes": {
+  },
+  "license": "Apache 2.0",
+  "suggestions": {
+  },
+  "platforms": {
+  },
+  "maintainer": "Web Essentials",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures itest",
+  "providing": {
+  }
+}
