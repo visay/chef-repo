@@ -7,7 +7,7 @@ roles:
   - web:
   - web-typo3:
   - ci:
-
+     
 #data bags:
 #  - apps:
 #    - typo3
@@ -15,4 +15,4 @@ roles:
 nodes:
   - mango:
     - role[base]
-    - -x fudriot --sudo
+    - -i ~/.ssh/id_rsa -x fudriot --sudo -d ubuntu10.04-gems
