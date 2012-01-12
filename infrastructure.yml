@@ -1,8 +1,18 @@
-#cookbooks:
-#- apache2:
+cookbooks:
+  - chef-client:
+  - apt:
 
 roles:
-- base:
-- web:
-- web-typo3:
-- ci:
+  - base:
+  - web:
+  - web-typo3:
+  - ci:
+
+#data bags:
+#  - apps:
+#    - typo3
+
+nodes:
+  - mango:
+    - role[base]
+    - -x fudriot --sudo
