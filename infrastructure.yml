@@ -1,6 +1,7 @@
 cookbooks:
-  - chef-client:
+#  - chef-client:
   - apt:
+  - ntp:
 
 roles:
   - base:
@@ -12,7 +13,7 @@ roles:
 #  - apps:
 #    - typo3
 
-nodes:
-  - mango:
-    - role[base]
-    - -i ~/.ssh/id_rsa -x fudriot --sudo -d ubuntu10.04-gems
+#nodes:
+#  - mango:
+#    - role[base]
+#    - -x fudriot --sudo 
