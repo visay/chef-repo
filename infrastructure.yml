@@ -3,11 +3,14 @@ cookbooks:
 #  - chef-client:
   - apt:
   - ntp:
+  
   - apache2:
+  - php:
+  
+  # Required for recipe php
   - build-essential:
   - xml:
   - mysql:
-  - php:
 
 roles:
   - base:
