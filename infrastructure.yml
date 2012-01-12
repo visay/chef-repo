@@ -1,16 +1,21 @@
 cookbooks:
+
+  # Utilities
   - base:
 #  - chef-client:
   - apt:
   - ntp:
   
-  - apache2:
-  - php:
   
-  # Required for recipe php
+  # Required librairies
   - build-essential:
   - xml:
+  - openssl:
+  
+  #
+  - apache2:
   - mysql:
+  - php:
 
 roles:
   - base:
