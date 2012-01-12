@@ -1,0 +1,16 @@
+= DESCRIPTION:
+
+Install some default packages
+
+* wget
+* curl
+* svn
+* git
+
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+
