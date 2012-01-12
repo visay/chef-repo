@@ -1,0 +1,8 @@
+#cookbooks:
+#- apache2:
+
+roles:
+- base:
+- web:
+- web-typo3:
+- ci:
