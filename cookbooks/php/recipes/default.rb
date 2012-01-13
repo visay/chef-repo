@@ -36,7 +36,7 @@ php_pear_channel 'pear.phpqatools.org' do
 end
 
 # install a specific version
-php_pear "phpqatools/phpqatools" do
+#php_pear "phpqatools/phpqatools" do
   #version "1.5.4"
-  action :install
-end
+#  action :install
+#end
