@@ -32,7 +32,7 @@ end
 
 # Recipe modified bellow
 php_pear_channel 'pear.phpqatools.org' do
-  action[:discover]
+  action :discover
 end
 
 # install a specific version
