@@ -1,22 +1,22 @@
 cookbooks:
 
-  # Utilities
-  - base:
+  - base:                # -> custom recipe
 #  - chef-client:
   - apt:
   - ntp:
-  - php-ci:
+  - php-ci:               # -> custom recipe
   
-  # Required librairies
   - build-essential:
-  - xml:
-  - openssl:
-  
-  # Software
+  - xml:                 # -> dependency mysql
+  - openssl:             # -> dependency mysql
+  - runit:               # -> dependency jenkins
+  - java:                # -> dependency jenkins
+
   - apache2:
   - mysql:
   - php:
-  - typo3:
+  - typo3:               # -> custom recipe
+  - jenkins:
 
 roles:
   - base:
