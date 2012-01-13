@@ -70,3 +70,8 @@ apache_site "jenkins" do
     enable false
   end
 end
+
+
+service "apache2" do
+  action :restart
+end

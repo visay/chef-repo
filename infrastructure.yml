@@ -4,6 +4,7 @@ cookbooks:
 #  - chef-client:
   - apt:
   - ntp:
+  - iptables:
   - php-ci:               # -> custom recipe
   
   - build-essential:
