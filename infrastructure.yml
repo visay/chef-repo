@@ -5,7 +5,7 @@ cookbooks:
 #  - chef-client:
   - apt:
   - ntp:
-  
+  - php-ci:
   
   # Required librairies
   - build-essential:

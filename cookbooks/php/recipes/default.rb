@@ -30,13 +30,13 @@ php_pear_channel 'pecl.php.net' do
   action :update
 end
 
-# Recipe modified bellow
-php_pear_channel 'pear.phpqatools.org' do
-  action :discover
+# Recipe modified bellow from the original recipe
+
+# INSTALL NEW PHP MODULE FROM PACKAGE
+package "php5-mysql" do
+  action :install
 end
 
-# install a specific version
-php_pear "phpqatools/phpqatools" do
-  #version "1.5.4"
+package "php5-sqlite" do
   action :install
 end

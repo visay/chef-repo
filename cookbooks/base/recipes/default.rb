@@ -11,7 +11,7 @@ packages = [
   'wget',
   'curl',
   'subversion',
-  'git-core',
+  'git-core'
 ]
 
 case node[:platform]
