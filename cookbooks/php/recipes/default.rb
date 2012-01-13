@@ -31,12 +31,12 @@ php_pear_channel 'pecl.php.net' do
 end
 
 # Recipe modified bellow
-#php_pear_channel 'pear.phpqatools.org' do
-#  action :discover
-#end
+php_pear_channel 'pear.phpqatools.org' do
+  action :discover
+end
 
 # install a specific version
-#php_pear "phpqatools/phpqatools" do
+php_pear "phpqatools/phpqatools" do
   #version "1.5.4"
-#  action :install
-#end
+  action :install
+end
