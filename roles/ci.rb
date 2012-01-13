@@ -5,7 +5,7 @@ name "ci"
 	# @doc http://wiki.opscode.com/display/chef/Roles
 	
     # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
-    run_list "recipe[php-ci::default]"
+    run_list "recipe[typo3::default]", "recipe[php-ci::default]"
 
 	## env_run_lists "prod" => ["recipe[apache2]"], "staging" => ["recipe[apache2::staging]"]
 	

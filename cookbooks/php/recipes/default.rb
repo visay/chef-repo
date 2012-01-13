@@ -29,14 +29,3 @@ end
 php_pear_channel 'pecl.php.net' do
   action :update
 end
-
-# Recipe modified bellow from the original recipe
-
-# INSTALL NEW PHP MODULE FROM PACKAGE
-package "php5-mysql" do
-  action :install
-end
-
-package "php5-sqlite" do
-  action :install
-end

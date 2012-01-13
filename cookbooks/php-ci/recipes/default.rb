@@ -15,15 +15,17 @@ php_pear "PEAR" do
 end
 
 # REGISTER NEW PEAR CHANNELS
-['pear.phpqatools.org', 'pear.symfony-project.com', 'pear.phpunit.de', 'pear.phpmd.org', 'pear.pdepend.org'].each do |channel|
+['pear.phpqatools.org', 'pear.symfony-project.com', 'pear.phpunit.de', 'pear.phpmd.org', 'pear.pdepend.org', 'components.ez.no'].each do |channel|
   php_pear_channel channel do
-    action [:discover, :update]
+    #action [:discover, :update]
+    action :discover
   end
 end
 
 # NEW PACKAGE
 php_pear "phpqatools" do
   channel "pear.phpqatools.org"
+  options "--alldeps"
   action :install
 end
 

@@ -16,6 +16,7 @@ cookbooks:
   - apache2:
   - mysql:
   - php:
+  - typo3:
 
 roles:
   - base:
