@@ -18,7 +18,7 @@ case node[:platform]
   when "debian", "ubuntu"
     packages.each do |pkg|
       package pkg do
-        action[:install]
+        action :install
     end
   end
 end
