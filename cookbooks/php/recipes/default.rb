@@ -38,5 +38,5 @@ end
 # install a specific version
 php_pear "phpqatools/phpqatools" do
   #version "1.5.4"
-  action[:install]
+  action :install
 end
