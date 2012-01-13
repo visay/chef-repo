@@ -14,7 +14,7 @@ cookbooks:
   
   # Software
   - apache2:
-#  - mysql:
+  - mysql:
   - php:
 
 roles:
