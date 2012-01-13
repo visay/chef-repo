@@ -23,16 +23,20 @@ roles:
   - web:
   - web-typo3:
   - ci:
+  - ci-typo3:
      
 #data bags:
 #  - apps:
 #    - typo3
 
 #nodes:
+   # MANGO
 #  - mango:
-#    - role[base], role[web]
+#    - role[base] role[web] role[web-typo3] role[ci] role[ci-typo3]
 #    - -x fudriot --sudo 
-
-
-# knife node run_list add mango 'role[base]'
-# knife ssh name:mango -x fudriot "sudo chef-client"
+     # knife node run_list add mango 'role[base]'
+     # knife node run_list add mango 'role[web]'
+     # knife node run_list add mango 'role[web-typo3]'
+     # knife node run_list add mango 'role[ci]'
+     # knife node run_list add mango 'role[ci-typo3]'
+     # knife ssh name:mango -x fudriot "sudo chef-client"

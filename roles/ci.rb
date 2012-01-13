@@ -1,16 +1,15 @@
 name "ci"
 
-    description "Roles for a Continuous Integration server"
-    
-	# @doc http://wiki.opscode.com/display/chef/Roles
-	
-    # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
-    run_list "recipe[typo3::default]", "recipe[php-ci::default]"
+  description "Roles for a Continuous Integration server"
+  
+  # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
+  run_list "recipe[jenkins::default]", "recipe[jenkins::proxy_apache2]"
 
-	## env_run_lists "prod" => ["recipe[apache2]"], "staging" => ["recipe[apache2::staging]"]
-	
-    # Attributes applied if the node doesn't have it set already.
-    # default_attributes "apache2" => { "listen_ports" => [ "80", "443" ] }
-
-    # Attributes applied no matter what the node has set already.
-    # override_attributes "apache2" => { "max_children" => "50" }
+  # Attributes applied no matter what the node has set already.
+  override_attributes "jenkins" => {
+    "http_proxy" =>  {
+      "variant" => "apache2",
+      "host_name" => "ci.local",
+      "host_aliases" => ['ci']
+    } 
+  }
