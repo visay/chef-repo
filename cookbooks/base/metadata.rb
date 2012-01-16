@@ -1,6 +1,6 @@
-maintainer       "Web Essentials"
-maintainer_email "fabien@web-essentials.asia"
-license          "All rights reserved"
+maintainer       "Fabien Udriot"
+maintainer_email "fabien@omic.ch"
+license           "Apache 2.0"
 description      "Installs/Configures base"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.1"

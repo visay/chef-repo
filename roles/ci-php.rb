@@ -1,4 +1,4 @@
-name "ci-typo3"
+name "ci-php"
 
   description "Roles for a Continuous Integration server running TYPO3"
   

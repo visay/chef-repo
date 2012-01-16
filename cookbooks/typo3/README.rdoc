@@ -1,8 +1,15 @@
 = DESCRIPTION:
 
+This cookbook provides recipes for setting up a server to be able to run TYPO3 CMS.
+
 = REQUIREMENTS:
+
+Depends on cookbook: php
 
 = ATTRIBUTES:
 
+None
+
 = USAGE:
 
+"recipe[typo3::default]"

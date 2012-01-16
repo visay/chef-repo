@@ -1,16 +1,17 @@
 = DESCRIPTION:
 
-Install some default packages
-
-* wget
-* curl
-* svn
-* git
-
+This cookbook provides recipes for setting up default useful package on system.
 
 = REQUIREMENTS:
 
+Depends on cookbook: php, jenkins,
+
 = ATTRIBUTES:
 
+None
+
 = USAGE:
+
+"recipe[php-ci::default]"  -> set up default package (e.g curl, wget , ...)
+"recipe[php-ci::firewall]" -> set up default firewall rules
 

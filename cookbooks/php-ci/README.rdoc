@@ -1,8 +1,15 @@
 = DESCRIPTION:
 
+This cookbook provides recipes for setting up a PHP Continuous Integration server dealing with PHP projects.
+
 = REQUIREMENTS:
+
+Depends on cookbook: php, jenkins,
 
 = ATTRIBUTES:
 
+None
+
 = USAGE:
 
+"recipe[php-ci::default]"
