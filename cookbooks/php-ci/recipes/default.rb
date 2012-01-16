@@ -69,6 +69,12 @@ directory "#{node[:jenkins][:server][:home]}/jobs/php-template" do
   group node[:jenkins][:server][:group]
 end
 
+template "#{node[:jenkins][:server][:home]}/jobs/php-template/config.xml" do
+  source "php-template/config.xml"
+  owner node[:jenkins][:server][:user]
+  group node[:jenkins][:server][:group]
+  not_if { File.exists?("#{node[:jenkins][:server][:home]}/jobs/php-template/config.xml") }
+end
 
 #jenkins_cli "reload-configuration"
 #jenkins_cli "safe-restart"
