@@ -1,7 +1,8 @@
 cookbooks:
 
   - base:                # -> custom recipe
-#  - chef-client:
+  - chef-client:
+  - bluepill:
   - apt:
   - ntp:
   - iptables:
