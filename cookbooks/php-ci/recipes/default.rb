@@ -60,7 +60,7 @@ require_recipe "jenkins"
 # jenkins_cli "install-plugin pmd"
 # jenkins_cli "install-plugin violations"
 # jenkins_cli "install-plugin xunit"
-
+# jenkins_cli "safe-restart"
 
 # INSTALL PHP TEMPLATE
 directory "#{node[:jenkins][:server][:home]}/jobs/php-template" do
@@ -76,5 +76,4 @@ template "#{node[:jenkins][:server][:home]}/jobs/php-template/config.xml" do
   not_if { File.exists?("#{node[:jenkins][:server][:home]}/jobs/php-template/config.xml") }
 end
 
-#jenkins_cli "reload-configuration"
-#jenkins_cli "safe-restart"
+jenkins_cli "reload-configuration"
