@@ -3,7 +3,7 @@ name "ci"
   description "Roles for a Continuous Integration server"
   
   # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
-  run_list "recipe[jenkins::default]", "recipe[jenkins::proxy_apache2]"
+  run_list "recipe[jenkins]", "recipe[jenkins::proxy_apache2]"
 
   # Attributes applied no matter what the node has set already.
   override_attributes "jenkins" => {
