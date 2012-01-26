@@ -1,0 +1,28 @@
+.. Chef in practice documentation master file, created by
+   sphinx-quickstart on Wed Jan 25 11:47:03 2012.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Chef in practice's documentation!
+============================================
+
+Contents:
+
+.. toctree::
+	:maxdepth: 2
+
+	01-Installation/Index
+	00-TutorialNewProject/Index
+
+
+* Installation of Chef Server
+* Some Definition
+* Installation of Sphinx the documentation
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
