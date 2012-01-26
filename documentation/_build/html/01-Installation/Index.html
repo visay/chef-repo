@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>What is Chef? &mdash; Chef in practice 1.0.0 documentation</title>
+    <title>Chef &mdash; Chef in practice 1.0.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -53,11 +53,14 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="what-is-chef">
-<h1>What is Chef?<a class="headerlink" href="#what-is-chef" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="chef">
+<h1>Chef<a class="headerlink" href="#chef" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-chef">
+<h2>What is Chef?<a class="headerlink" href="#what-is-chef" title="Permalink to this headline">¶</a></h2>
 <p>Chef is a systems integration framework, built to bring the benefits of configuration management to your entire
 infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475
 individual contributors and almost 100 corporations making it great.</p>
+</div>
 <div class="section" id="how-chef-works">
 <h2>How Chef Works?<a class="headerlink" href="#how-chef-works" title="Permalink to this headline">¶</a></h2>
 <p>You write “recipes” that describe how you want a part of your server (such as Apache, MySQL,
@@ -76,10 +79,10 @@ bellow will focus on setting up a server / client infrastructure. The steps can 
 <li>Install chef-client on your nodes</li>
 </ol>
 </div>
-<div class="section" id="installation-of-a-chef-server">
-<h2>Installation of a Chef Server<a class="headerlink" href="#installation-of-a-chef-server" title="Permalink to this headline">¶</a></h2>
-<p>Bellow is a straight walkthrough for Ubuntu based environment without much explanation. To get a more in depth
-insight of what is done, a reading from the official Wiki <a class="reference external" href="http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages/">page</a> is recommended.</p>
+<div class="section" id="part-i-chef-server-installation">
+<h2>Part I - Chef Server Installation<a class="headerlink" href="#part-i-chef-server-installation" title="Permalink to this headline">¶</a></h2>
+<p>Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a
+more in depth insight of what is done, a more careful reading from the official Wiki <a class="reference external" href="http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages/">page</a> is recommended.</p>
 <div class="section" id="add-the-opscode-apt-repository">
 <h3>Add the Opscode APT Repository<a class="headerlink" href="#add-the-opscode-apt-repository" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre># Configure Source to install Chef version 0.10
@@ -102,13 +105,14 @@ sudo apt-get update</pre>
 </div>
 <div class="section" id="install-the-chef-server-package">
 <h3>Install the chef-server package<a class="headerlink" href="#install-the-chef-server-package" title="Permalink to this headline">¶</a></h3>
+<p>Using the default packet manager of Ubuntu, install Chef Server:</p>
 <div class="highlight-python"><pre># Upgrade the distribution
 sudo apt-get upgrade -yu
 
 # Install Chef package
 sudo apt-get install chef chef-server -yu</pre>
 </div>
-<p>During the installation process, a few questions are asked such as</p>
+<p>During the installation process, a few questions are asked and can be replied as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -151,8 +155,8 @@ sudo apt-get install chef chef-server -yu</pre>
 </div>
 <div class="section" id="verify-that-all-components-are-running">
 <h3>Verify that all components are running<a class="headerlink" href="#verify-that-all-components-are-running" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre># Check if the server is listening by typing command netstat
-# Chef CLI using Knife
+<p>Check if the server is listening by typing command netstat:</p>
+<div class="highlight-python"><pre># Chef CLI using Knife
 netstat -tapn | grep 4000
 
 # Chef Web UI
@@ -170,7 +174,8 @@ netstat -tapn | grep 8983</pre>
 </div>
 <div class="section" id="how-to-proxy-chef-server-with-apache">
 <h3>How to Proxy Chef Server with Apache<a class="headerlink" href="#how-to-proxy-chef-server-with-apache" title="Permalink to this headline">¶</a></h3>
-<p>Original tutorial is available with more details in case something goes wrong <a class="reference external" href="http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache/">online</a>.</p>
+<p>What if we could use a default port to communicate with Chef and use Apache as a proxy. <a class="reference external" href="http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache">Original tutorial</a> is
+available with more details.</p>
 <div class="highlight-python"><pre>    # Install Apache and Git
     apt-get install -yu apache2 git-core
 
@@ -189,12 +194,13 @@ netstat -tapn | grep 8983</pre>
     Listen 444
 &lt;/IfModule&gt;</pre>
 </div>
-<p>We need to create a certificate to run HTTP traffic over a secure connection which is done in the coming step:</p>
+<p>We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate,
+we are going to use a <a class="reference external" href="http://rake.rubyforge.org/">Rake</a> task. Rake is a simple ruby build program with capabilities similar to Make or Ant from
+the Java world or alternatively Phing in PHP:</p>
 <div class="highlight-python"><pre># Go home first (and don't forget to drink your cup of coffee / tea which is getting cold!!)
 cd
 
 # Fetch a dummy Chef repository to get the Rake file (-&gt; generate certificate)
-# Rake can be compared as Ant script in the Ruby world.
 git clone git://github.com/opscode/chef-repo.git chef-repo-init
 cd chef-repo-init
 
@@ -203,9 +209,9 @@ rake ssl_cert FQDN=`hostname -f`
 sudo mkdir -p /etc/chef/certificates
 sudo cp certificates/`hostname -f`.pem /etc/chef/certificates</pre>
 </div>
-<p>Turn up sleeves one more time since some more manual configuration is required to set up a Virtual Host. Copy and
-paste example from appendix <a class="reference external" href="../10-Appendix/ApacheVirtualHostSample.html/">Apache Virtual Host Sample</a> and replace
-the <tt class="docutils literal"><span class="pre">CHANGME</span></tt> to the domain of the company. When done run the following commands:</p>
+<p>Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy
+and paste example Apache Virtual Host <a class="reference external" href="../10-Appendix/ApacheVirtualHostSample.html">sample</a> into <tt class="file docutils literal"><span class="pre">/etc/apache2/sites-available/chef_server.conf</span></tt> and
+replace the <tt class="docutils literal"><span class="pre">CHANGME</span></tt> with the domain of the company:</p>
 <div class="highlight-python"><pre># Copy Virtual Host Sample into
 nano -w /etc/apache2/sites-available/chef_server.conf
 
@@ -229,60 +235,72 @@ iptables -A INPUT -i eth0 -p icmp -j ACCEPT
 iptables -A INPUT -j LOG -m limit
 iptables -A INPUT -j REJECT</pre>
 </div>
-<p>To make the rules apply at the next reboot, the current status of the firewall must be written into a file:</p>
+<p>To make the rules apply at the next reboot, the current state of the firewall must be written back into a file:</p>
 <div class="highlight-python"><pre># Create a runnable file for next reboot
 echo '#!/bin/sh' &gt; /etc/network/if-pre-up.d/iptables-load
 echo "iptables-restore &lt; /etc/iptables.rules" &gt;&gt; /etc/network/if-pre-up.d/iptables-load
 chmod +x /etc/network/if-pre-up.d/iptables-load</pre>
 </div>
-<div class="section" id="install-workstation">
-<h4>Install workstation<a class="headerlink" href="#install-workstation" title="Permalink to this headline">¶</a></h4>
-<p>The next step is to configure the Workstation which is the</p>
 </div>
 </div>
-</div>
-<div class="section" id="install-chef-command">
-<h2>Install Chef command<a class="headerlink" href="#install-chef-command" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part-ii-workstation-installation">
+<h2>Part II - Workstation installation<a class="headerlink" href="#part-ii-workstation-installation" title="Permalink to this headline">¶</a></h2>
+<p>A Chef workstation is where you develop cookbooks, interact with your chef-server, and interact with nodes.</p>
+<div class="section" id="install-chef">
+<h3>Install Chef<a class="headerlink" href="#install-chef" title="Permalink to this headline">¶</a></h3>
+<p>To install Chef and its dependencies, run the following code using <a class="reference external" href="http://docs.rubygems.org/">Gem</a></p>
 <div class="highlight-python"><pre>sudo gem install chef --no-ri --no-rdoc
+
+# Here we install version 0.9.1 since value 1.0.0 seems to have a problem with ruby 1.8
 sudo gem install --version 0.9.1 spiceweasel</pre>
 </div>
-<p>note: version 1.0.0 seems to have problem with ruby 1.8</p>
-<p><a class="reference external" href="https://github.com/mattray/spiceweasel/blob/master/examples/php-quick-start.yml">https://github.com/mattray/spiceweasel/blob/master/examples/php-quick-start.yml</a></p>
 </div>
-<div class="section" id="install-repository">
-<h2>INSTALL - REPOSITORY<a class="headerlink" href="#install-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><pre>git clone git://github.com/opscode/chef-repo.git
+<div class="section" id="download-the-chef-repository">
+<h3>Download the Chef Repository<a class="headerlink" href="#download-the-chef-repository" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre># Read &amp; Write access
+git clone git@github.com:visay/chef-repo.git
 cd chef-repo
-mkdir .chef
-rm -rf .git
-git init
-etc...</pre>
+mkdir .chef</pre>
 </div>
-<div class="highlight-python"><pre>knife configure
-   Following answers:
-   /Users/fudriot/PhpstormProjects/chef-repo-we/.chef/knife.rb
-   https://chef
-   /Users/fudriot/PhpstormProjects/chef-repo-we/.chef/validation.pem
-   /Users/fudriot/PhpstormProjects/chef-repo</pre>
 </div>
-<p>Server: copy validation key from:</p>
+<div class="section" id="configure-knife">
+<h3>Configure Knife<a class="headerlink" href="#configure-knife" title="Permalink to this headline">¶</a></h3>
+<p>Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server
+from the work station. To configure it copy / paste the <a class="reference external" href="../10-Appendix/KnifeSample.html">Knife sample</a> into <tt class="file docutils literal"><span class="pre">.chef/knife.rb</span></tt> and tailor the
+content to include your username in it. Along to <tt class="file docutils literal"><span class="pre">knife.rb</span></tt>, one needs to create two additional files enabling
+a authentication against the server. To do so, fetch the content of <tt class="file docutils literal"><span class="pre">validation.pem</span></tt> from the Chef server and
+paste it in the work station</p>
 <div class="highlight-python"><pre>ssh chef
-cat /etc/chef/validation.pem</pre>
+cat /etc/chef/validation.pem
+
+# On the working station, copy the key within the chef repository
+nano .chef/validation.pem</pre>
 </div>
-<p>Web UI: Create Key for User:</p>
-<div class="highlight-python"><pre>https://chef-www:444/clients/new
+<p>Time to create a new user and a private key using the web UI of Chef:</p>
+<div class="highlight-python"><pre>https://chef-www.company.con:444/clients/new
 na .chef/fudriot.pem</pre>
 </div>
-<p>Server: Create Key for User (alternative):</p>
-<div class="highlight-python"><pre>knife client create fudriot -n -a -f /tmp/fudriot.pem -u chef-webui -k /etc/chef/webui.pem</pre>
+<p>The connection with the Chef server can be established and tested using knife:</p>
+<div class="highlight-python"><pre># Should display a list of client
+knife client list</pre>
 </div>
-<p>Working station: test connection:</p>
-<div class="highlight-python"><pre>knife client list</pre>
+<p>To read more about the capability of Knife, refer to the <a class="reference external" href="http://wiki.opscode.com/display/chef/Knife+Built+In+Subcommands">documentation</a></p>
 </div>
 </div>
-<div class="section" id="client-server-installation">
-<h2>Client Server Installation<a class="headerlink" href="#client-server-installation" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://wiki.opscode.com/display/chef/Installing+Chef+Client+on+Ubuntu+or+Debian">http://wiki.opscode.com/display/chef/Installing+Chef+Client+on+Ubuntu+or+Debian</a></p>
+<div class="section" id="part-iii-client-server-installation">
+<h2>Part III - Client Server Installation<a class="headerlink" href="#part-iii-client-server-installation" title="Permalink to this headline">¶</a></h2>
+<p>Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables
+(e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo.
+One of the easiest way of installing a Chef client is to run the knife bootstrap command:</p>
+<div class="highlight-python"><pre>knife bootstrap HOSTNAME -x fudriot --sudo</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To find HOSTNAME run command <tt class="docutils literal"><span class="pre">hostname</span> <span class="pre">-f</span></tt> on the target.</p>
+</div>
+<p>To ensure the Chef client has correctly been set, test with:</p>
+<div class="highlight-python"><pre>knife client show HOSTNAME</pre>
+</div>
 </div>
 </div>
 
@@ -294,13 +312,13 @@ na .chef/fudriot.pem</pre>
         <div class="sidebar">
           <h3>Table Of Contents</h3>
           <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">What is Chef?</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Chef</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-chef">What is Chef?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-chef-works">How Chef Works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-install">How to install?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation-of-a-chef-server">Installation of a Chef Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-chef-command">Install Chef command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-repository">INSTALL - REPOSITORY</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-server-installation">Client Server Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#part-i-chef-server-installation">Part I - Chef Server Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#part-ii-workstation-installation">Part II - Workstation installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#part-iii-client-server-installation">Part III - Client Server Installation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../00-TutorialNewProject/Index.html">How to versione a TYPO3 website</a></li>

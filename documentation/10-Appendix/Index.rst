@@ -9,6 +9,7 @@ This appendix contains following pages
 	:maxdepth: 2
 
 	ApacheVirtualHostSample
+	KnifeSample
 
 
 

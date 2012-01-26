@@ -1,6 +1,8 @@
-=============
+Chef
+==========================
+
 What is Chef?
-=============
+--------------
 
 Chef is a systems integration framework, built to bring the benefits of configuration management to your entire
 infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475
@@ -16,7 +18,7 @@ each resource is properly configured, and gives a safe, flexible, easily-repeata
 your servers are always running exactly the way you want them to.
 
 How to install?
----------------
+----------------
 
 Chef comes in different flavors such as server / client mode, solo mode or possibly a hosted mode. The tutorial
 bellow will focus on setting up a server / client infrastructure. The steps can be divided in three:
@@ -25,11 +27,11 @@ bellow will focus on setting up a server / client infrastructure. The steps can 
 #. Configure your local workstation
 #. Install chef-client on your nodes
 
-Installation of a Chef Server
-------------------------------
+Part I - Chef Server Installation
+---------------------------------------
 
-Bellow is a straight walkthrough for Ubuntu based environment without much explanation. To get a more in depth
-insight of what is done, a reading from the official Wiki `page <http://wiki.opscode
+Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a
+more in depth insight of what is done, a more careful reading from the official Wiki `page <http://wiki.opscode
 .com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages/>`_ is recommended.
 
 
@@ -62,7 +64,7 @@ Installing the opscode-keyring package will keep the key up-to-date::
 Install the chef-server package
 +++++++++++++++++++++++++++++++
 
-::
+Using the default packet manager of Ubuntu, install Chef Server::
 
 	# Upgrade the distribution
 	sudo apt-get upgrade -yu
@@ -71,7 +73,7 @@ Install the chef-server package
 	sudo apt-get install chef chef-server -yu
 
 
-During the installation process, a few questions are asked such as
+During the installation process, a few questions are asked and can be replied as follows:
 
 +-------------------------------+------------------------------+---------------------------------------+
 |Questions                      |Possible Answer               |Target File                            |
@@ -102,9 +104,8 @@ This will:
 Verify that all components are running
 ++++++++++++++++++++++++++++++++++++++
 
-::
+Check if the server is listening by typing command netstat::
 
-	# Check if the server is listening by typing command netstat
 	# Chef CLI using Knife
 	netstat -tapn | grep 4000
 
@@ -123,9 +124,8 @@ Verify that all components are running
 How to Proxy Chef Server with Apache
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Original tutorial is available with more details in case something goes wrong `online <http://wiki.opscode
-.com/display/chef/How+to+Proxy+Chef+Server+with+Apache
-/>`_.
+What if we could use a default port to communicate with Chef and use Apache as a proxy. `Original tutorial`_ is
+available with more details.
 
 ::
 
@@ -147,15 +147,14 @@ Original tutorial is available with more details in case something goes wrong `o
         Listen 444
     </IfModule>
 
-
-We need to create a certificate to run HTTP traffic over a secure connection which is done in the coming step::
-
+We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate,
+we are going to use a Rake_ task. Rake is a simple ruby build program with capabilities similar to Make or Ant from
+the Java world or alternatively Phing in PHP::
 
 	# Go home first (and don't forget to drink your cup of coffee / tea which is getting cold!!)
 	cd
 
 	# Fetch a dummy Chef repository to get the Rake file (-> generate certificate)
-	# Rake can be compared as Ant script in the Ruby world.
 	git clone git://github.com/opscode/chef-repo.git chef-repo-init
 	cd chef-repo-init
 
@@ -164,11 +163,9 @@ We need to create a certificate to run HTTP traffic over a secure connection whi
 	sudo mkdir -p /etc/chef/certificates
 	sudo cp certificates/`hostname -f`.pem /etc/chef/certificates
 
-
-
-Turn up sleeves one more time since some more manual configuration is required to set up a Virtual Host. Copy and
-paste example from appendix `Apache Virtual Host Sample <../10-Appendix/ApacheVirtualHostSample.html />`_ and replace
-the ``CHANGME`` to the domain of the company. When done run the following commands::
+Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy
+and paste example Apache Virtual Host `sample`_ into :file:`/etc/apache2/sites-available/chef_server.conf` and
+replace the ``CHANGME`` with the domain of the company::
 
 	# Copy Virtual Host Sample into
 	nano -w /etc/apache2/sites-available/chef_server.conf
@@ -194,7 +191,7 @@ As a good practice, we configure the Firewall to only accept connection coming f
 	iptables -A INPUT -j LOG -m limit
 	iptables -A INPUT -j REJECT
 
-To make the rules apply at the next reboot, the current status of the firewall must be written into a file::
+To make the rules apply at the next reboot, the current state of the firewall must be written back into a file::
 
 	# Create a runnable file for next reboot
 	echo '#!/bin/sh' > /etc/network/if-pre-up.d/iptables-load
@@ -202,79 +199,82 @@ To make the rules apply at the next reboot, the current status of the firewall m
 	chmod +x /etc/network/if-pre-up.d/iptables-load
 
 
-Install workstation
-====================
+Part II - Workstation installation
+-----------------------------------
 
-The next step is to configure the Workstation which is the
+A Chef workstation is where you develop cookbooks, interact with your chef-server, and interact with nodes.
 
+Install Chef
+++++++++++++++++++++
 
-
-Install Chef command
---------------------
-
-::
+To install Chef and its dependencies, run the following code using Gem_ ::
 
 	sudo gem install chef --no-ri --no-rdoc
+
+	# Here we install version 0.9.1 since value 1.0.0 seems to have a problem with ruby 1.8
 	sudo gem install --version 0.9.1 spiceweasel
 
 
-note: version 1.0.0 seems to have problem with ruby 1.8
-
-
-https://github.com/mattray/spiceweasel/blob/master/examples/php-quick-start.yml
-
-
-
-
-
-INSTALL - REPOSITORY
----------------------
+Download the Chef Repository
+++++++++++++++++++++++++++++++
 
 ::
 
-	git clone git://github.com/opscode/chef-repo.git
+	# Read & Write access
+	git clone git@github.com:visay/chef-repo.git
 	cd chef-repo
 	mkdir .chef
-	rm -rf .git
-	git init
-	etc...
 
-::
+Configure Knife
+++++++++++++++++
 
-	knife configure
-	   Following answers:
-	   /Users/fudriot/PhpstormProjects/chef-repo-we/.chef/knife.rb
-	   https://chef
-	   /Users/fudriot/PhpstormProjects/chef-repo-we/.chef/validation.pem
-	   /Users/fudriot/PhpstormProjects/chef-repo
-
-Server: copy validation key from::
+Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server
+from the work station. To configure it copy / paste the `Knife sample`_ into :file:`.chef/knife.rb` and tailor the
+content to include your username in it. Along to :file:`knife.rb`, one needs to create two additional files enabling
+a authentication against the server. To do so, fetch the content of :file:`validation.pem` from the Chef server and
+paste it in the work station ::
 
 	ssh chef
 	cat /etc/chef/validation.pem
 
+	# On the working station, copy the key within the chef repository
+	nano .chef/validation.pem
 
-Web UI: Create Key for User::
+Time to create a new user and a private key using the web UI of Chef::
 
-	https://chef-www:444/clients/new
+	https://chef-www.company.con:444/clients/new
 	na .chef/fudriot.pem
 
+The connection with the Chef server can be established and tested using knife::
 
-Server: Create Key for User (alternative)::
-
-	knife client create fudriot -n -a -f /tmp/fudriot.pem -u chef-webui -k /etc/chef/webui.pem
-
-
-Working station: test connection::
-
-
+	# Should display a list of client
 	knife client list
 
+To read more about the capability of Knife, refer to the documentation_
+
+Part III - Client Server Installation
+----------------------------------------
+
+Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables
+(e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo.
+One of the easiest way of installing a Chef client is to run the knife bootstrap command::
+
+	knife bootstrap HOSTNAME -x fudriot --sudo
 
 
+.. note::
 
-Client Server Installation
----------------------------
-http://wiki.opscode.com/display/chef/Installing+Chef+Client+on+Ubuntu+or+Debian
+	To find HOSTNAME run command ``hostname -f`` on the target.
 
+To ensure the Chef client has correctly been set, test with::
 
+	knife client show HOSTNAME
+
+.. Link bellow
+
+.. _Rake: http://rake.rubyforge.org/
+.. _Gem: http://docs.rubygems.org/
+.. _sample: ../10-Appendix/ApacheVirtualHostSample.html
+.. _Knife sample: ../10-Appendix/KnifeSample.html
+.. _documentation: http://wiki.opscode.com/display/chef/Knife+Built+In+Subcommands
+.. _Original tutorial: http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache

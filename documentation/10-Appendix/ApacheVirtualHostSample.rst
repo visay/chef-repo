@@ -1,6 +1,5 @@
-=====================
-Apache Virtual Host
-=====================
+Apache Virtual Host Sample
+===========================
 
 Replace ``CHANGME`` by the domain name of your company and put this file under
 :file:`/etc/apache2/sites-available/chef_server.conf` for instance. Aditionaly pay attention the
