@@ -17,7 +17,24 @@
 # limitations under the License.
 #
 
-gem_package "cucumber" do
-  action :install
-  ignore_failure true
-end
+
+# gems = [
+  # 'cucumber',
+  # 'rake'
+# ]
+# 
+# gems.each do |gem|
+  # gem_package gem do   
+    # action :install
+    # #ignore_failure true
+# end
+
+
+# pear channel-discover pear.behat.org
+# pear channel-discover pear.symfony.com
+# pear channel-discover pear.phpunit.de
+# pear install --alldeps behat/behat-beta
+# pear install --alldeps behat/mink
+# pear install --alldeps phpunit/PHPUnit
+#pear install --alldeps --force phpunit/phpunit
+
