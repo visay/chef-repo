@@ -13,6 +13,7 @@ Contents:
 
 	01-Installation/Index
 	00-TutorialNewProject/Index
+	10-Appendix/Index
 
 
 * Installation of Chef Server

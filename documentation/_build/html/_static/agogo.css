@@ -482,3 +482,12 @@ pre {
     overflow-x: auto;
     overflow-y: hidden;
 }
+
+
+div.header, div.content, div.footer {
+    width: 80em;
+}
+
+div.document {
+    width: 60em;
+}

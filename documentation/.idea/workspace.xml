@@ -25,16 +25,25 @@
       <file leaf-file-name="Index.rst" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="4" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0">
+            <state line="20" column="23" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.rst" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Index.rst" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01-Installation/Index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="0" selection-start="5030" selection-end="5030" vertical-scroll-proportion="0.0">
+            <state line="80" column="26" selection-start="3118" selection-end="3126" vertical-scroll-proportion="-1.5765054">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApacheVirtualHostSample.rst" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/10-Appendix/ApacheVirtualHostSample.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="20" selection-start="1513" selection-end="1515" vertical-scroll-proportion="-21.5">
               <folding />
             </state>
           </provider>
@@ -49,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agogo.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="agogo.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_static/agogo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="490" column="0" selection-start="7520" selection-end="7520" vertical-scroll-proportion="0.9259625">
+            <state line="487" column="12" selection-start="7512" selection-end="7512" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,12 +84,15 @@
       <list>
         <option value="$PROJECT_DIR$/TutorialNewProject/Index.rst" />
         <option value="$PROJECT_DIR$/Installation/Index.rst" />
-        <option value="$PROJECT_DIR$/Index.rst" />
         <option value="$PROJECT_DIR$/_static/default.css" />
         <option value="$PROJECT_DIR$/_static/custom.css" />
-        <option value="$PROJECT_DIR$/01-Installation/Index.rst" />
         <option value="$PROJECT_DIR$/conf.py" />
+        <option value="$PROJECT_DIR$/10-Appendix/ApacheVirtualHost.rst" />
+        <option value="$PROJECT_DIR$/Index.rst" />
         <option value="$PROJECT_DIR$/_static/agogo.css" />
+        <option value="$PROJECT_DIR$/10-Appendix/Index.rst" />
+        <option value="$PROJECT_DIR$/10-Appendix/ApacheVirtualHostSample.rst" />
+        <option value="$PROJECT_DIR$/01-Installation/Index.rst" />
       </list>
     </option>
   </component>
@@ -196,6 +208,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="_static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="documentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="documentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="10-Appendix" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,20 +403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="4" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-Installation/Index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="0" selection-start="5030" selection-end="5030" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="93" column="19" selection-start="3144" selection-end="3144" vertical-scroll-proportion="-4.576923">
@@ -398,9 +410,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="23" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_static/agogo.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="490" column="0" selection-start="7520" selection-end="7520" vertical-scroll-proportion="0.9259625">
+        <state line="487" column="12" selection-start="7512" selection-end="7512" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/10-Appendix/Index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="38" selection-start="113" selection-end="113" vertical-scroll-proportion="0.074037515">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/10-Appendix/ApacheVirtualHostSample.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="20" selection-start="1513" selection-end="1515" vertical-scroll-proportion="-21.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-Installation/Index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="26" selection-start="3118" selection-end="3126" vertical-scroll-proportion="-1.5765054">
           <folding />
         </state>
       </provider>
