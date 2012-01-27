@@ -8,13 +8,13 @@ name "ci"
   # Attributes applied no matter what the node has set already.
   override_attributes "jenkins" => {
     "server" => {
-    	"url" => "http://ci.local", #overwrite computed default value based on fqdn
-    	"host" => "ci",
+    	"url" => "http://ci.web-essentials.asia", #overwrite computed default value based on fqdn
+    	"host" => "ci.web-essentials.asia",
     	"port" => "8080"
     },
     "http_proxy" =>  {
       "variant" => "apache2",
-      "host_name" => "ci.local",
-      "host_aliases" => ['ci']
+      "host_name" => "ci.web-essentials.asia",
+      #"host_aliases" => ['ci']
     } 
   }

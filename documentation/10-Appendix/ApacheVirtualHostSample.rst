@@ -14,45 +14,43 @@ Replace ``CHANGME`` by the domain name of your company and put this file under
 	# REDIRECT HTTP -> HTTPS
 	<VirtualHost *:80>
 
-	        # CHANGEME
-	        ServerName chef.CHANGEME
+			ServerName chef.CHANGEME
 
-	        <IfModule mod_rewrite.c>
-	                Options +FollowSymLinks
-	                Options +Indexes
-	                RewriteEngine On
-	                RewriteCond %{SERVER_PORT} !^443$
-	                # CHANGEME
-	                RewriteRule ^(.*)$ https://chef.CHANGEME/$1 [R,L]
-	        </IfModule>
+			<IfModule mod_rewrite.c>
+					Options +FollowSymLinks
+					Options +Indexes
+					RewriteEngine On
+					RewriteCond %{SERVER_PORT} !^443$
+					# CHANGEME
+					RewriteRule ^(.*)$ https://chef.CHANGEME/$1 [R,L]
+			</IfModule>
 	</VirtualHost>
 
 	# HTTPS CONFIGURATION
 	<VirtualHost *:443>
-	        # CHANGEME
-	        ServerName chef.CHANGEME
-	        DocumentRoot /usr/share/chef-server-api/public
+			# CHANGEME
+			ServerName chef.CHANGEME
+			DocumentRoot /usr/share/chef-server-api/public
 
-	        <Proxy balancer://chef_server>
-	                BalancerMember http://127.0.0.1:4000
-	                Order deny,allow
-	                Allow from all
-	        </Proxy>
+			<Proxy balancer://chef_server>
+					BalancerMember http://127.0.0.1:4000
+					Order deny,allow
+					Allow from all
+			</Proxy>
 
-	        LogLevel info
-	        ErrorLog /var/log/apache2/chef_server-error.log
-	        CustomLog /var/log/apache2/chef_server-access.log combined
+			LogLevel info
+			ErrorLog /var/log/apache2/chef_server-error.log
+			CustomLog /var/log/apache2/chef_server-access.log combined
 
-	        SSLEngine On
-	    # CHANGEME
-	        SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
-	        SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
+			SSLEngine On
+			SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
+			SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
 
-	        RequestHeader set X_FORWARDED_PROTO 'https'
+			RequestHeader set X_FORWARDED_PROTO 'https'
 
-	        RewriteEngine On
-	        RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-	        RewriteRule ^/(.*)$ balancer://chef_server%{REQUEST_URI} [P,QSA,L]
+			RewriteEngine On
+			RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+			RewriteRule ^/(.*)$ balancer://chef_server%{REQUEST_URI} [P,QSA,L]
 
 	</VirtualHost>
 
@@ -64,46 +62,43 @@ Replace ``CHANGME`` by the domain name of your company and put this file under
 	# REDIRECT HTTP -> HTTPS
 	<VirtualHost *:80>
 
-	        # CHANGEME
-	        ServerName chef-www.CHANGEME
+			ServerName www.chef.CHANGEME
 
-	        <IfModule mod_rewrite.c>
-	                Options +FollowSymLinks
-	                Options +Indexes
-	                RewriteEngine On
-	                RewriteCond %{SERVER_PORT} !^444$
-	                # CHANGEME
-	                RewriteRule ^(.*)$ https://chef-www.CHANGEME:444 [R,L]
-	        </IfModule>
+			<IfModule mod_rewrite.c>
+					Options +FollowSymLinks
+					Options +Indexes
+					RewriteEngine On
+					RewriteCond %{SERVER_PORT} !^444$
+					# CHANGEME
+					RewriteRule ^(.*)$ https://chef.CHANGEME:444 [R,L]
+			</IfModule>
 	</VirtualHost>
 
 
 	# HTTPS CONFIGURATION
 
 	<VirtualHost *:444>
-	        # CHANGEME
-	        ServerName chef-www.CHANGEME
+			ServerName chef.CHANGEME
 
-	        DocumentRoot /usr/share/chef-server-webui/public
+			DocumentRoot /usr/share/chef-server-webui/public
 
-	        <Proxy balancer://chef_server_webui>
-	                BalancerMember http://127.0.0.1:4040
-	                Order deny,allow
-	                Allow from all
-	        </Proxy>
+			<Proxy balancer://chef_server_webui>
+					BalancerMember http://127.0.0.1:4040
+					Order deny,allow
+					Allow from all
+			</Proxy>
 
-	        LogLevel info
-	        ErrorLog /var/log/apache2/chef_server-error.log
-	        CustomLog /var/log/apache2/chef_server-access.log combined
+			LogLevel info
+			ErrorLog /var/log/apache2/chef_server-error.log
+			CustomLog /var/log/apache2/chef_server-access.log combined
 
-	        SSLEngine On
-	        # CHANGEME
-	        SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
-	        SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
+			SSLEngine On
+			SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
+			SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
 
-	        RequestHeader set X_FORWARDED_PROTO 'https'
+			RequestHeader set X_FORWARDED_PROTO 'https'
 
-	        RewriteEngine On
-	        RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-	        RewriteRule ^/(.*)$ balancer://chef_server_webui%{REQUEST_URI} [P,QSA,L]
+			RewriteEngine On
+			RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+			RewriteRule ^/(.*)$ balancer://chef_server_webui%{REQUEST_URI} [P,QSA,L]
 	</VirtualHost>
