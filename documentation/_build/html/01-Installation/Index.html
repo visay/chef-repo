@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Chef in practice 1.0.0 documentation" href="../index.html" />
-    <link rel="next" title="How to versione a TYPO3 website" href="../00-TutorialNewProject/Index.html" />
+    <link rel="next" title="Continuous Integration" href="../02-ContinuousIntegration/Index.html" />
     <link rel="prev" title="Welcome to Chef in practice’s documentation!" href="../Index.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
         <div class="rel">
           <a href="../Index.html" title="Welcome to Chef in practice’s documentation!"
              accesskey="P">previous</a> |
-          <a href="../00-TutorialNewProject/Index.html" title="How to versione a TYPO3 website"
+          <a href="../02-ContinuousIntegration/Index.html" title="Continuous Integration"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -57,22 +57,15 @@
 <h1>Chef<a class="headerlink" href="#chef" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-chef">
 <h2>What is Chef?<a class="headerlink" href="#what-is-chef" title="Permalink to this headline">¶</a></h2>
-<p>Chef is a systems integration framework, built to bring the benefits of configuration management to your entire
-infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475
-individual contributors and almost 100 corporations making it great.</p>
+<p>Chef is a systems integration framework, built to bring the benefits of configuration management to your entire infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475 individual contributors and almost 100 corporations making it great.</p>
 </div>
 <div class="section" id="how-chef-works">
 <h2>How Chef Works?<a class="headerlink" href="#how-chef-works" title="Permalink to this headline">¶</a></h2>
-<p>You write “recipes” that describe how you want a part of your server (such as Apache, MySQL,
-or Jenkins) to be configured. These recipes describe a series of resources that should be in a particular state -
-packages that should be installed, services that should be running, or files that should be written. Chef makes sure
-each resource is properly configured, and gives a safe, flexible, easily-repeatable mechanism for making sure
-your servers are always running exactly the way you want them to.</p>
+<p>You write “recipes” that describe how you want a part of your server (such as Apache, MySQL, or Jenkins) to be configured. These recipes describe a series of resources that should be in a particular state - packages that should be installed, services that should be running, or files that should be written. Chef makes sure each resource is properly configured, and gives a safe, flexible, easily-repeatable mechanism for making sure your servers are always running exactly the way you want them</p>
 </div>
 <div class="section" id="how-to-install">
 <h2>How to install?<a class="headerlink" href="#how-to-install" title="Permalink to this headline">¶</a></h2>
-<p>Chef comes in different flavors such as server / client mode, solo mode or possibly a hosted mode. The tutorial
-bellow will focus on setting up a server / client infrastructure. The steps can be divided in three:</p>
+<p>Chef comes in different flavors such as server / client mode, solo mode or possibly a hosted mode. The tutorial bellow will focus on setting up a server / client infrastructure. The steps can be divided in three:</p>
 <ol class="arabic simple">
 <li>Install a Chef Server</li>
 <li>Configure your local workstation</li>
@@ -81,8 +74,7 @@ bellow will focus on setting up a server / client infrastructure. The steps can 
 </div>
 <div class="section" id="part-i-chef-server-installation">
 <h2>Part I - Chef Server Installation<a class="headerlink" href="#part-i-chef-server-installation" title="Permalink to this headline">¶</a></h2>
-<p>Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a
-more in depth insight of what is done, a more careful reading from the official Wiki <a class="reference external" href="http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages/">page</a> is recommended.</p>
+<p>Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a more in depth insight of what is done, a more careful reading from the official Wiki <a class="reference external" href="http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages">page</a> is recommended.</p>
 <div class="section" id="add-the-opscode-apt-repository">
 <h3>Add the Opscode APT Repository<a class="headerlink" href="#add-the-opscode-apt-repository" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre># Configure Source to install Chef version 0.10
@@ -174,8 +166,7 @@ netstat -tapn | grep 8983</pre>
 </div>
 <div class="section" id="how-to-proxy-chef-server-with-apache">
 <h3>How to Proxy Chef Server with Apache<a class="headerlink" href="#how-to-proxy-chef-server-with-apache" title="Permalink to this headline">¶</a></h3>
-<p>What if we could use a default port to communicate with Chef and use Apache as a proxy. <a class="reference external" href="http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache">Original tutorial</a> is
-available with more details.</p>
+<p>What if we could use a default port to communicate with Chef and use Apache as a proxy. <a class="reference external" href="http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache">Original tutorial</a> is available with more details.</p>
 <div class="highlight-python"><pre>    # Install Apache and Git
     apt-get install -yu apache2 git-core
 
@@ -194,9 +185,7 @@ available with more details.</p>
     Listen 444
 &lt;/IfModule&gt;</pre>
 </div>
-<p>We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate,
-we are going to use a <a class="reference external" href="http://rake.rubyforge.org/">Rake</a> task. Rake is a simple ruby build program with capabilities similar to Make or Ant from
-the Java world or alternatively Phing in PHP:</p>
+<p>We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate, we are going to use a <a class="reference external" href="http://rake.rubyforge.org/">Rake</a> task. Rake is a simple ruby build program with capabilities similar to Make or Ant from the Java world or alternatively Phing in PHP:</p>
 <div class="highlight-python"><pre># Go home first (and don't forget to drink your cup of coffee / tea which is getting cold!!)
 cd
 
@@ -209,9 +198,7 @@ rake ssl_cert FQDN=`hostname -f`
 sudo mkdir -p /etc/chef/certificates
 sudo cp certificates/`hostname -f`.pem /etc/chef/certificates</pre>
 </div>
-<p>Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy
-and paste example Apache Virtual Host <a class="reference external" href="../10-Appendix/ApacheVirtualHostSample.html">sample</a> into <tt class="file docutils literal"><span class="pre">/etc/apache2/sites-available/chef_server.conf</span></tt> and
-replace the <tt class="docutils literal"><span class="pre">CHANGME</span></tt> with the domain of the company:</p>
+<p>Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy and paste example Apache Virtual Host <a class="reference external" href="../10-Appendix/ApacheVirtualHostSample.html">sample</a> into <tt class="file docutils literal"><span class="pre">/etc/apache2/sites-available/chef_server.conf</span></tt> and replace the <tt class="docutils literal"><span class="pre">CHANGME</span></tt> with the domain of the company:</p>
 <div class="highlight-python"><pre># Copy Virtual Host Sample into
 nano -w /etc/apache2/sites-available/chef_server.conf
 
@@ -265,11 +252,7 @@ mkdir .chef</pre>
 </div>
 <div class="section" id="configure-knife">
 <h3>Configure Knife<a class="headerlink" href="#configure-knife" title="Permalink to this headline">¶</a></h3>
-<p>Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server
-from the work station. To configure it copy / paste the <a class="reference external" href="../10-Appendix/KnifeSample.html">Knife sample</a> into <tt class="file docutils literal"><span class="pre">.chef/knife.rb</span></tt> and tailor the
-content to include your username in it. Along to <tt class="file docutils literal"><span class="pre">knife.rb</span></tt>, one needs to create two additional files enabling
-a authentication against the server. To do so, fetch the content of <tt class="file docutils literal"><span class="pre">validation.pem</span></tt> from the Chef server and
-paste it in the work station</p>
+<p>Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server from the work station. To configure it copy / paste the <a class="reference external" href="../10-Appendix/KnifeSample.html">Knife sample</a> into <tt class="file docutils literal"><span class="pre">.chef/knife.rb</span></tt> and tailor the content to include your username in it. Along to <tt class="file docutils literal"><span class="pre">knife.rb</span></tt>, one needs to create two additional files enabling a authentication against the server. To do so, fetch the content of <tt class="file docutils literal"><span class="pre">validation.pem</span></tt> from the Chef server and paste it in the work station:</p>
 <div class="highlight-python"><pre>ssh chef
 cat /etc/chef/validation.pem
 
@@ -289,16 +272,14 @@ knife client list</pre>
 </div>
 <div class="section" id="part-iii-client-server-installation">
 <h2>Part III - Client Server Installation<a class="headerlink" href="#part-iii-client-server-installation" title="Permalink to this headline">¶</a></h2>
-<p>Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables
-(e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo.
-One of the easiest way of installing a Chef client is to run the knife bootstrap command:</p>
+<p>Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables (e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo. One of the easiest way of installing a Chef client is to run the knife bootstrap command:</p>
 <div class="highlight-python"><pre>knife bootstrap HOSTNAME -x fudriot --sudo</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To find HOSTNAME run command <tt class="docutils literal"><span class="pre">hostname</span> <span class="pre">-f</span></tt> on the target.</p>
 </div>
-<p>To ensure the Chef client has correctly been set, test with:</p>
+<p>To ensure the Chef client has been correctly initialized, test with:</p>
 <div class="highlight-python"><pre>knife client show HOSTNAME</pre>
 </div>
 </div>
@@ -321,7 +302,10 @@ One of the easiest way of installing a Chef client is to run the knife bootstrap
 <li class="toctree-l2"><a class="reference internal" href="#part-iii-client-server-installation">Part III - Client Server Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../00-TutorialNewProject/Index.html">How to versione a TYPO3 website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-ContinuousIntegration/Index.html">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-UnitTesting/Index.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-FunctionalityTesting/Index.html">Functional Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Tutorials/Index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10-Appendix/Index.html">Appendix</a></li>
 </ul>
 
@@ -345,7 +329,7 @@ One of the easiest way of installing a Chef client is to run the knife bootstrap
         <div class="left">
           <a href="../Index.html" title="Welcome to Chef in practice’s documentation!"
              >previous</a> |
-          <a href="../00-TutorialNewProject/Index.html" title="How to versione a TYPO3 website"
+          <a href="../02-ContinuousIntegration/Index.html" title="Continuous Integration"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>

@@ -4,24 +4,17 @@ Chef
 What is Chef?
 --------------
 
-Chef is a systems integration framework, built to bring the benefits of configuration management to your entire
-infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475
-individual contributors and almost 100 corporations making it great.
+Chef is a systems integration framework, built to bring the benefits of configuration management to your entire infrastructure. Originally written by Opscode, Chef is open source under the Apache license and has more than 475 individual contributors and almost 100 corporations making it great.
 
 How Chef Works?
 ---------------
 
-You write “recipes” that describe how you want a part of your server (such as Apache, MySQL,
-or Jenkins) to be configured. These recipes describe a series of resources that should be in a particular state -
-packages that should be installed, services that should be running, or files that should be written. Chef makes sure
-each resource is properly configured, and gives a safe, flexible, easily-repeatable mechanism for making sure
-your servers are always running exactly the way you want them to.
+You write “recipes” that describe how you want a part of your server (such as Apache, MySQL, or Jenkins) to be configured. These recipes describe a series of resources that should be in a particular state - packages that should be installed, services that should be running, or files that should be written. Chef makes sure each resource is properly configured, and gives a safe, flexible, easily-repeatable mechanism for making sure your servers are always running exactly the way you want them
 
 How to install?
 ----------------
 
-Chef comes in different flavors such as server / client mode, solo mode or possibly a hosted mode. The tutorial
-bellow will focus on setting up a server / client infrastructure. The steps can be divided in three:
+Chef comes in different flavors such as server / client mode, solo mode or possibly a hosted mode. The tutorial bellow will focus on setting up a server / client infrastructure. The steps can be divided in three:
 
 #. Install a Chef Server
 #. Configure your local workstation
@@ -30,9 +23,7 @@ bellow will focus on setting up a server / client infrastructure. The steps can 
 Part I - Chef Server Installation
 ---------------------------------------
 
-Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a
-more in depth insight of what is done, a more careful reading from the official Wiki `page <http://wiki.opscode
-.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages/>`_ is recommended.
+Bellow is a straight walkthrough for Ubuntu based environment without much explanation to get things done. To get a more in depth insight of what is done, a more careful reading from the official Wiki page_ is recommended.
 
 
 Add the Opscode APT Repository
@@ -124,8 +115,7 @@ Check if the server is listening by typing command netstat::
 How to Proxy Chef Server with Apache
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-What if we could use a default port to communicate with Chef and use Apache as a proxy. `Original tutorial`_ is
-available with more details.
+What if we could use a default port to communicate with Chef and use Apache as a proxy. `Original tutorial`_ is available with more details.
 
 ::
 
@@ -147,9 +137,7 @@ available with more details.
         Listen 444
     </IfModule>
 
-We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate,
-we are going to use a Rake_ task. Rake is a simple ruby build program with capabilities similar to Make or Ant from
-the Java world or alternatively Phing in PHP::
+We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate, we are going to use a Rake_ task. Rake is a simple ruby build program with capabilities similar to Make or Ant from the Java world or alternatively Phing in PHP::
 
 	# Go home first (and don't forget to drink your cup of coffee / tea which is getting cold!!)
 	cd
@@ -163,9 +151,7 @@ the Java world or alternatively Phing in PHP::
 	sudo mkdir -p /etc/chef/certificates
 	sudo cp certificates/`hostname -f`.pem /etc/chef/certificates
 
-Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy
-and paste example Apache Virtual Host `sample`_ into :file:`/etc/apache2/sites-available/chef_server.conf` and
-replace the ``CHANGME`` with the domain of the company::
+Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy and paste example Apache Virtual Host `sample`_ into :file:`/etc/apache2/sites-available/chef_server.conf` and replace the ``CHANGME`` with the domain of the company::
 
 	# Copy Virtual Host Sample into
 	nano -w /etc/apache2/sites-available/chef_server.conf
@@ -228,11 +214,7 @@ Download the Chef Repository
 Configure Knife
 ++++++++++++++++
 
-Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server
-from the work station. To configure it copy / paste the `Knife sample`_ into :file:`.chef/knife.rb` and tailor the
-content to include your username in it. Along to :file:`knife.rb`, one needs to create two additional files enabling
-a authentication against the server. To do so, fetch the content of :file:`validation.pem` from the Chef server and
-paste it in the work station ::
+Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server from the work station. To configure it copy / paste the `Knife sample`_ into :file:`.chef/knife.rb` and tailor the content to include your username in it. Along to :file:`knife.rb`, one needs to create two additional files enabling a authentication against the server. To do so, fetch the content of :file:`validation.pem` from the Chef server and paste it in the work station::
 
 	ssh chef
 	cat /etc/chef/validation.pem
@@ -255,9 +237,7 @@ To read more about the capability of Knife, refer to the documentation_
 Part III - Client Server Installation
 ----------------------------------------
 
-Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables
-(e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo.
-One of the easiest way of installing a Chef client is to run the knife bootstrap command::
+Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables (e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo. One of the easiest way of installing a Chef client is to run the knife bootstrap command::
 
 	knife bootstrap HOSTNAME -x fudriot --sudo
 
@@ -272,6 +252,7 @@ To ensure the Chef client has been correctly initialized, test with::
 
 .. Link bellow
 
+.. _page: http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages
 .. _Rake: http://rake.rubyforge.org/
 .. _Gem: http://docs.rubygems.org/
 .. _sample: ../10-Appendix/ApacheVirtualHostSample.html

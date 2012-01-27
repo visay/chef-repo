@@ -240,3 +240,13 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 #texinfo_show_urls = 'footnote'
+
+rst_epilog = """
+.. .........................
+	Replacement
+	.........................
+
+.. |COMPANY| replace:: web-essentials.asia
+.. |CI| replace:: http://ci.web-essentials.asia
+
+"""
