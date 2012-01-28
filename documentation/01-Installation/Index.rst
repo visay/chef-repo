@@ -221,7 +221,7 @@ Download the Chef Repository
 ::
 
 	# Read & Write access
-	git clone git@github.com:visay/chef-repo.git
+	git clone --recursive git@github.com:visay/chef-repo.git
 	cd chef-repo
 	mkdir .chef
 
@@ -257,15 +257,26 @@ Chef client is the command that will fetch the recipe from the Chef server, conf
 
 	knife bootstrap HOSTNAME -x USERNAME --sudo
 
-
 .. note::
 
 	To find HOSTNAME run command ``hostname -f`` on the target.
 
 To ensure the Chef client has been correctly initialized, test with::
 
-	knife client list
-	knife client show HOSTNAME
+	knife node list
+	knife node show HOSTNAME
+
+	knife cookbook list
+	> should be empty since no cookbook has been uploaded to the Chef server yet
+
+Now that we have completed the installation, this is the moment to upload data to the Chef server such as cookbook, roles and so forth... For doing that, we are going to ask ``spiceweasel`` to give us a hand by generating some Chef command to initialize our infrastructure::
+
+	cd chef-repo
+	spiceweasel infrastructure.yml
+	> should display a list of command among them cookbooks and roles. Copy / paste these commands in the console
+
+	# Alternatively, if command 'parallel' is installed, one can tell parallel to execute these command for us.
+	spiceweasel infrastructure.yml | parallel -k -j 1'
 
 .. Link bellow
 
