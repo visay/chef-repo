@@ -1,6 +1,10 @@
+# todo: add oh-my-zsh as recipe
+
+
 cookbooks:
 
-  - base:                # -> custom recipe
+  - base:                # (site-cookbook)
+  - oh-my-zsh:
   - apt:
   - ntp:
   - iptables:
@@ -15,10 +19,10 @@ cookbooks:
   - apache2:
   - mysql:
   - php:
-  - typo3:               # -> custom recipe
+  - typo3:               # (site-cookbook)
   - jenkins:
-  - functional-test:               # -> custom recipe
-  - unit-test:               # -> custom recipe
+  - functional-test:     # (site-cookbook)
+  - unit-test:           # (site-cookbook)
 
 roles:
   - base:
