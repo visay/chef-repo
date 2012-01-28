@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: php-ci
+# Cookbook Name:: unit-test
 # Recipe:: default
 #
 # Copyright 2012, Fabien Udriot <fabien@omic.ch>

@@ -18,14 +18,14 @@ cookbooks:
   - typo3:               # -> custom recipe
   - jenkins:
   - cucumber:               # -> custom recipe
-  - php-ci:               # -> custom recipe
+  - unit-test:               # -> custom recipe
 
 roles:
   - base:
   - web:
   - web-typo3:
   - ci:
-  - ci-php:
+  - unit-test:
   - behaviour:
      
 #data bags:
@@ -35,12 +35,12 @@ roles:
 #nodes:
    # MANGO
 #  - mango:
-#    - role[base] role[web] role[web-typo3] role[ci] role[ci-php]
+#    - role[base] role[web] role[web-typo3] role[ci] role[unit-test]
 #    - -x fudriot --sudo 
      # knife node run_list add mango 'role[base]'
      # knife node run_list add mango 'role[web]'
      # knife node run_list add mango 'role[web-typo3]'
      # knife node run_list add mango 'role[ci]'
-     # knife node run_list add mango 'role[ci-php]'
+     # knife node run_list add mango 'role[unit-test]'
      # knife node run_list add mango 'role[behaviour]'
      # knife ssh name:mango -x fudriot "sudo chef-client"

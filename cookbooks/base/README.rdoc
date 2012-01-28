@@ -12,6 +12,6 @@ None
 
 = USAGE:
 
-"recipe[php-ci::default]"  -> set up default package (e.g curl, wget , ...)
-"recipe[php-ci::firewall]" -> set up default firewall rules
+"recipe[base]"  -> set up default package (e.g curl, wget , ...)
+"recipe[base::firewall]" -> set up default firewall rules
 

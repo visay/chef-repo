@@ -54,7 +54,7 @@ Installing a PHP Unit Test environment using Chef will
 	   "role[web]",
 	   "role[web-typo3]",
 	   "role[ci]",
-	   "role[ci-php]"
+	   "role[unit-test]"
 	 ]
 
 	#Login into the client and run chef-client to execute the recipes
