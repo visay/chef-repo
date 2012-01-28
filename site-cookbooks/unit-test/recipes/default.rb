@@ -32,7 +32,7 @@ end
   end
 end
 
-# NEW PACKAGE
+# INSTALL PACKAGE
 php_pear "phpqatools" do
   channel "pear.phpqatools.org"
   options "--alldeps"

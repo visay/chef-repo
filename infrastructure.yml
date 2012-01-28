@@ -1,5 +1,6 @@
 # todo: add oh-my-zsh as recipe
-
+# todo: change role in ci.web-essentials.asia
+# todo: fix apache
 
 cookbooks:
 
@@ -8,8 +9,7 @@ cookbooks:
   - apt:
   - ntp:
   - iptables:
- 
-  
+
   - build-essential:
   - xml:                 # -> dependency mysql
   - openssl:             # -> dependency mysql
@@ -31,7 +31,7 @@ roles:
   - ci:
   - unit-test:
   - functional-test:
-     
+
 #data bags:
 #  - apps:
 #    - typo3
@@ -40,7 +40,7 @@ roles:
    # MANGO
 #  - mango:
 #    - role[base] role[web] role[web-typo3] role[ci] role[unit-test]
-#    - -x fudriot --sudo 
+#    - -x fudriot --sudo
      # knife node run_list add mango 'role[base]'
      # knife node run_list add mango 'role[web]'
      # knife node run_list add mango 'role[web-typo3]'

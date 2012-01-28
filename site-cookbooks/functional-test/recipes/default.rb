@@ -18,23 +18,41 @@
 #
 
 
-# gems = [
-  # 'cucumber',
-  # 'rake'
-# ]
-# 
-# gems.each do |gem|
-  # gem_package gem do   
-    # action :install
-    # #ignore_failure true
-# end
+include_recipe "php"
 
+# UPGRADE PEAR
+php_pear "PEAR" do
+  action :upgrade
+end
 
-# pear channel-discover pear.behat.org
-# pear channel-discover pear.symfony.com
-# pear channel-discover pear.phpunit.de
+# REGISTER NEW PEAR CHANNELS
+['pear.symfony-project.com', 'pear.phpunit.de', 'components.ez.no', 'pear.behat.org'].each do |channel|
+  php_pear_channel channel do
+    #action [:discover, :update]
+    action :discover
+  end
+end
+
+# INSTALL PACKAGE
+php_pear "behat-beta" do
+  channel "pear.behat.org"
+  options "--alldeps"
+  action :install
+end
+
+php_pear "mink" do
+  channel "pear.behat.org"
+  options "--alldeps"
+  action :install
+end
+
+php_pear "PHPUnit" do
+  channel "pear.phpunit.de"
+  options "--alldeps"
+  action :install
+end
+
 # pear install --alldeps behat/behat-beta
 # pear install --alldeps behat/mink
 # pear install --alldeps phpunit/PHPUnit
 #pear install --alldeps --force phpunit/phpunit
-
