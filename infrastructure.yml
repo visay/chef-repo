@@ -17,7 +17,7 @@ cookbooks:
   - php:
   - typo3:               # -> custom recipe
   - jenkins:
-  - cucumber:               # -> custom recipe
+  - functional-test:               # -> custom recipe
   - unit-test:               # -> custom recipe
 
 roles:
@@ -26,7 +26,7 @@ roles:
   - web-typo3:
   - ci:
   - unit-test:
-  - behaviour:
+  - functional-test:
      
 #data bags:
 #  - apps:
