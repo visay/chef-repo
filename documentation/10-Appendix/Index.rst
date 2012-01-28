@@ -1,16 +1,10 @@
-===============================
 Appendix
 ===============================
 
-
-This appendix contains following pages
+This section contains following appendix:
 
 .. toctree::
 	:maxdepth: 2
 
 	ApacheVirtualHostSample
 	KnifeSample
-
-
-
-

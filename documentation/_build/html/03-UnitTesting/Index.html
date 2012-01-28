@@ -79,7 +79,7 @@
 </div>
 <div class="section" id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
-<p>Installing a PHP Unit Test environment using Chef will</p>
+<p>Installing a PHP Unit Test environment using Chef is about setting the appropriate roles.</p>
 <div class="highlight-python"><pre># Edit role to the HOSTNAME (e.g ci.company.com) .
 knife node edit HOSTNAME
 
@@ -89,14 +89,17 @@ knife node edit HOSTNAME
    "role[web]",
    "role[web-typo3]",
    "role[ci]",
-   "role[ci-php]"
+   "role[unit-test]"
  ]
 
-#Login into the client and run chef-client to execute the recipes
+# Login into the client and run chef-client to execute the recipes
 ssh HOSTNAME
-sudo chef-client</pre>
+sudo chef-client
+
+# Alternatively, chef-client can be launched from the workstation
+knife ssh name:ci* -x USERNAM "sudo chef-client"</pre>
 </div>
-<p>At the end of the installation, a new Job has been created within <a class="reference external" href="http://ci.web-essentials.asia">http://ci.web-essentials.asia</a>. This job contains a lot of default configuration and is disabled by default since it will be used as template for creating new real job.</p>
+<p>At the end of the installation, a new Job has been created within <a class="reference external" href="http://ci.web-essentials.asia">http://ci.web-essentials.asia</a>. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.</p>
 </div>
 </div>
 

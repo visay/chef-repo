@@ -55,13 +55,13 @@
 <h1>Knife Configuration Sample<a class="headerlink" href="#knife-configuration-sample" title="Permalink to this headline">¶</a></h1>
 <p>Replace <tt class="docutils literal"><span class="pre">CHANGME</span></tt> by a username and save the file under <tt class="file docutils literal"><span class="pre">chef-repository/.chef/knife.rb</span></tt></p>
 <div class="highlight-python"><pre>    current_dir = File.dirname(__FILE__)
-log_level                :info
+    log_level                :info
 log_location             STDOUT
-node_name                'CHANGEME'
-client_key               "#{current_dir}/CHANGEME.pem"
+node_name                'USERNAME'
+client_key               "#{current_dir}/USERNAME.pem"
 validation_client_name   'chef-validator'
-validation_key           "#{current_dir}validation.pem"
-chef_server_url          'https://chef'
+validation_key           "#{current_dir}/validation.pem"
+chef_server_url          'https://chef.CHANGEME'
 cache_type               'BasicFile'
 cache_options( :path =&gt; "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]</pre>

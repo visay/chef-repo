@@ -66,45 +66,43 @@
 # REDIRECT HTTP -&gt; HTTPS
 &lt;VirtualHost *:80&gt;
 
-        # CHANGEME
-        ServerName chef.CHANGEME
+                ServerName chef.CHANGEME
 
-        &lt;IfModule mod_rewrite.c&gt;
-                Options +FollowSymLinks
-                Options +Indexes
-                RewriteEngine On
-                RewriteCond %{SERVER_PORT} !^443$
-                # CHANGEME
-                RewriteRule ^(.*)$ https://chef.CHANGEME/$1 [R,L]
-        &lt;/IfModule&gt;
+                &lt;IfModule mod_rewrite.c&gt;
+                                Options +FollowSymLinks
+                                Options +Indexes
+                                RewriteEngine On
+                                RewriteCond %{SERVER_PORT} !^443$
+                                # CHANGEME
+                                RewriteRule ^(.*)$ https://chef.CHANGEME/$1 [R,L]
+                &lt;/IfModule&gt;
 &lt;/VirtualHost&gt;
 
 # HTTPS CONFIGURATION
 &lt;VirtualHost *:443&gt;
-        # CHANGEME
-        ServerName chef.CHANGEME
-        DocumentRoot /usr/share/chef-server-api/public
+                # CHANGEME
+                ServerName chef.CHANGEME
+                DocumentRoot /usr/share/chef-server-api/public
 
-        &lt;Proxy balancer://chef_server&gt;
-                BalancerMember http://127.0.0.1:4000
-                Order deny,allow
-                Allow from all
-        &lt;/Proxy&gt;
+                &lt;Proxy balancer://chef_server&gt;
+                                BalancerMember http://127.0.0.1:4000
+                                Order deny,allow
+                                Allow from all
+                &lt;/Proxy&gt;
 
-        LogLevel info
-        ErrorLog /var/log/apache2/chef_server-error.log
-        CustomLog /var/log/apache2/chef_server-access.log combined
+                LogLevel info
+                ErrorLog /var/log/apache2/chef_server-error.log
+                CustomLog /var/log/apache2/chef_server-access.log combined
 
-        SSLEngine On
-    # CHANGEME
-        SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
-        SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
+                SSLEngine On
+                SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
+                SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
 
-        RequestHeader set X_FORWARDED_PROTO 'https'
+                RequestHeader set X_FORWARDED_PROTO 'https'
 
-        RewriteEngine On
-        RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-        RewriteRule ^/(.*)$ balancer://chef_server%{REQUEST_URI} [P,QSA,L]
+                RewriteEngine On
+                RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+                RewriteRule ^/(.*)$ balancer://chef_server%{REQUEST_URI} [P,QSA,L]
 
 &lt;/VirtualHost&gt;
 
@@ -116,48 +114,45 @@
 # REDIRECT HTTP -&gt; HTTPS
 &lt;VirtualHost *:80&gt;
 
-        # CHANGEME
-        ServerName chef-www.CHANGEME
+                ServerName www.chef.CHANGEME
 
-        &lt;IfModule mod_rewrite.c&gt;
-                Options +FollowSymLinks
-                Options +Indexes
-                RewriteEngine On
-                RewriteCond %{SERVER_PORT} !^444$
-                # CHANGEME
-                RewriteRule ^(.*)$ https://chef-www.CHANGEME:444 [R,L]
-        &lt;/IfModule&gt;
+                &lt;IfModule mod_rewrite.c&gt;
+                                Options +FollowSymLinks
+                                Options +Indexes
+                                RewriteEngine On
+                                RewriteCond %{SERVER_PORT} !^444$
+                                # CHANGEME
+                                RewriteRule ^(.*)$ https://chef.CHANGEME:444 [R,L]
+                &lt;/IfModule&gt;
 &lt;/VirtualHost&gt;
 
 
 # HTTPS CONFIGURATION
 
 &lt;VirtualHost *:444&gt;
-        # CHANGEME
-        ServerName chef-www.CHANGEME
+                ServerName chef.CHANGEME
 
-        DocumentRoot /usr/share/chef-server-webui/public
+                DocumentRoot /usr/share/chef-server-webui/public
 
-        &lt;Proxy balancer://chef_server_webui&gt;
-                BalancerMember http://127.0.0.1:4040
-                Order deny,allow
-                Allow from all
-        &lt;/Proxy&gt;
+                &lt;Proxy balancer://chef_server_webui&gt;
+                                BalancerMember http://127.0.0.1:4040
+                                Order deny,allow
+                                Allow from all
+                &lt;/Proxy&gt;
 
-        LogLevel info
-        ErrorLog /var/log/apache2/chef_server-error.log
-        CustomLog /var/log/apache2/chef_server-access.log combined
+                LogLevel info
+                ErrorLog /var/log/apache2/chef_server-error.log
+                CustomLog /var/log/apache2/chef_server-access.log combined
 
-        SSLEngine On
-        # CHANGEME
-        SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
-        SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
+                SSLEngine On
+                SSLCertificateFile /etc/chef/certificates/chef.CHANGEME.pem
+                SSLCertificateKeyFile /etc/chef/certificates/chef.CHANGEME.pem
 
-        RequestHeader set X_FORWARDED_PROTO 'https'
+                RequestHeader set X_FORWARDED_PROTO 'https'
 
-        RewriteEngine On
-        RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
-        RewriteRule ^/(.*)$ balancer://chef_server_webui%{REQUEST_URI} [P,QSA,L]
+                RewriteEngine On
+                RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+                RewriteRule ^/(.*)$ balancer://chef_server_webui%{REQUEST_URI} [P,QSA,L]
 &lt;/VirtualHost&gt;</pre>
 </div>
 </div>

@@ -69,7 +69,21 @@
 </div>
 <div class="section" id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
-<p>Installing a PHP Unit Test environment using Chef will</p>
+<p>Installing a PHP Unit Test environment using Chef is about setting the appropriate roles.</p>
+<div class="highlight-python"><pre># Edit role to the HOSTNAME (e.g ci.company.com) .
+knife node edit HOSTNAME
+
+# Add role for key "run_list"
+"role[functional-test]"
+
+# Login into the client and run chef-client to execute the recipes
+ssh HOSTNAME
+sudo chef-client
+
+# Alternatively, chef-client can be launched from the workstation
+knife ssh name:ci* -x USERNAM "sudo chef-client"</pre>
+</div>
+<p>At the end of the installation, <tt class="docutils literal"><span class="pre">behat</span></tt> command should be available in the terminal. Refer to <a class="reference external" href="../05-Tutorials/WritingFunctionalTest.html">Writing Functional Testing</a> for more information.</p>
 </div>
 </div>
 

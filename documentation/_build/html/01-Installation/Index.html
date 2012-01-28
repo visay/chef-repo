@@ -78,21 +78,26 @@
 <div class="section" id="add-the-opscode-apt-repository">
 <h3>Add the Opscode APT Repository<a class="headerlink" href="#add-the-opscode-apt-repository" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre># Configure Source to install Chef version 0.10
+sudo su
 echo "deb http://apt.opscode.com/ `lsb_release -cs`-0.10 main" | sudo tee /etc/apt/sources.list.d/opscode.list</pre>
 </div>
 </div>
 <div class="section" id="add-the-gpg-key-and-update-index">
 <h3>Add the GPG Key and Update Index<a class="headerlink" href="#add-the-gpg-key-and-update-index" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre># Create a directory for storing new key and import them
-sudo mkdir -p /etc/apt/trusted.gpg.d
+sudo su
+mkdir -p /etc/apt/trusted.gpg.d
 gpg --fetch-key http://apt.opscode.com/packages@opscode.com.gpg.key
-gpg --export packages@opscode.com | sudo tee /etc/apt/trusted.gpg.d/opscode-keyring.gpg &gt; /dev/null
+gpg --export packages@opscode.com | tee /etc/apt/trusted.gpg.d/opscode-keyring.gpg &gt; /dev/null
 
 # Update the package definition.
-sudo apt-get update</pre>
+apt-get update</pre>
 </div>
 <p>Installing the opscode-keyring package will keep the key up-to-date:</p>
-<div class="highlight-python"><pre>sudo apt-get install opscode-keyring -yu</pre>
+<div class="highlight-python"><pre>sudo su
+apt-get install opscode-keyring -yu
+
+-&gt; Answer Yes when asking for the maintenace version</pre>
 </div>
 </div>
 <div class="section" id="install-the-chef-server-package">
@@ -120,7 +125,7 @@ sudo apt-get install chef chef-server -yu</pre>
 <td><a class="reference external" href="http://chef.company.com">http://chef.company.com</a></td>
 <td>/etc/chef/client.rb</td>
 </tr>
-<tr class="row-odd"><td>Password for the Chef Server</td>
+<tr class="row-odd"><td>Password for AMQP</td>
 <td>password</td>
 <td>/etc/chef/server.rb</td>
 </tr>
@@ -167,26 +172,29 @@ netstat -tapn | grep 8983</pre>
 <div class="section" id="how-to-proxy-chef-server-with-apache">
 <h3>How to Proxy Chef Server with Apache<a class="headerlink" href="#how-to-proxy-chef-server-with-apache" title="Permalink to this headline">¶</a></h3>
 <p>What if we could use a default port to communicate with Chef and use Apache as a proxy. <a class="reference external" href="http://wiki.opscode.com/display/chef/How+to+Proxy+Chef+Server+with+Apache">Original tutorial</a> is available with more details.</p>
-<div class="highlight-python"><pre>    # Install Apache and Git
-    apt-get install -yu apache2 git-core
+<div class="highlight-python"><pre>sudo su
 
-    # Enable new module
-    for a2mod in proxy proxy_http proxy_balancer ssl rewrite headers
-    do
-      sudo a2enmod $a2mod
-    done
+# Install Apache and Git
+apt-get install -yu apache2 git-core
 
-    # Add a new port to listen to
-    nano /etc/apache2/ports.conf
+# Enable new module
+for a2mod in proxy proxy_http proxy_balancer ssl rewrite headers
+do
+        sudo a2enmod $a2mod
+done
 
-    # mod_ssl directive should contain something like:
-    &lt;IfModule mod_ssl.c&gt;
-    Listen 443
-    Listen 444
+# Add a new port to listen to
+nano /etc/apache2/ports.conf
+
+# mod_ssl directive should contain something like:
+&lt;IfModule mod_ssl.c&gt;
+        Listen 443
+        Listen 444
 &lt;/IfModule&gt;</pre>
 </div>
 <p>We need to create a certificate to run HTTP traffic over a secure connection. To issue a new certificate, we are going to use a <a class="reference external" href="http://rake.rubyforge.org/">Rake</a> task. Rake is a simple ruby build program with capabilities similar to Make or Ant from the Java world or alternatively Phing in PHP:</p>
 <div class="highlight-python"><pre># Go home first (and don't forget to drink your cup of coffee / tea which is getting cold!!)
+sudo su
 cd
 
 # Fetch a dummy Chef repository to get the Rake file (-&gt; generate certificate)
@@ -195,15 +203,17 @@ cd chef-repo-init
 
 # Generate a certificate and put it into the chef directory
 rake ssl_cert FQDN=`hostname -f`
-sudo mkdir -p /etc/chef/certificates
-sudo cp certificates/`hostname -f`.pem /etc/chef/certificates</pre>
+mkdir -p /etc/chef/certificates
+cp certificates/`hostname -f`.pem /etc/chef/certificates</pre>
 </div>
 <p>Time to turn up sleeves one more time since some manual configuration is required to set up a Virtual Host. Copy and paste example Apache Virtual Host <a class="reference external" href="../10-Appendix/ApacheVirtualHostSample.html">sample</a> into <tt class="file docutils literal"><span class="pre">/etc/apache2/sites-available/chef_server.conf</span></tt> and replace the <tt class="docutils literal"><span class="pre">CHANGME</span></tt> with the domain of the company:</p>
 <div class="highlight-python"><pre># Copy Virtual Host Sample into
+sudo su
 nano -w /etc/apache2/sites-available/chef_server.conf
 
 # Enables Virtual Host
-sudo a2ensite chef_server.conf
+a2ensite chef_server.conf
+a2dissite default
 
 # Restart Apache
 service apache2 restart</pre>
@@ -236,16 +246,18 @@ chmod +x /etc/network/if-pre-up.d/iptables-load</pre>
 <div class="section" id="install-chef">
 <h3>Install Chef<a class="headerlink" href="#install-chef" title="Permalink to this headline">¶</a></h3>
 <p>To install Chef and its dependencies, run the following code using <a class="reference external" href="http://docs.rubygems.org/">Gem</a></p>
-<div class="highlight-python"><pre>sudo gem install chef --no-ri --no-rdoc
+<div class="highlight-python"><pre>sudo su
+gem install chef --no-ri --no-rdoc
 
 # Here we install version 0.9.1 since value 1.0.0 seems to have a problem with ruby 1.8
-sudo gem install --version 0.9.1 spiceweasel</pre>
+ruby -v
+gem install --version 0.9.1 spiceweasel</pre>
 </div>
 </div>
 <div class="section" id="download-the-chef-repository">
 <h3>Download the Chef Repository<a class="headerlink" href="#download-the-chef-repository" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre># Read &amp; Write access
-git clone git@github.com:visay/chef-repo.git
+git clone --recursive git@github.com:visay/chef-repo.git
 cd chef-repo
 mkdir .chef</pre>
 </div>
@@ -253,15 +265,16 @@ mkdir .chef</pre>
 <div class="section" id="configure-knife">
 <h3>Configure Knife<a class="headerlink" href="#configure-knife" title="Permalink to this headline">¶</a></h3>
 <p>Knife is a powerful command-line interface (CLI) that comes with Chef enabling to communicate with the Chef Server from the work station. To configure it copy / paste the <a class="reference external" href="../10-Appendix/KnifeSample.html">Knife sample</a> into <tt class="file docutils literal"><span class="pre">.chef/knife.rb</span></tt> and tailor the content to include your username in it. Along to <tt class="file docutils literal"><span class="pre">knife.rb</span></tt>, one needs to create two additional files enabling a authentication against the server. To do so, fetch the content of <tt class="file docutils literal"><span class="pre">validation.pem</span></tt> from the Chef server and paste it in the work station:</p>
-<div class="highlight-python"><pre>ssh chef
+<div class="highlight-python"><pre># On the working station, copy the key within the chef repository
+ssh chef
 cat /etc/chef/validation.pem
-
-# On the working station, copy the key within the chef repository
+cd chef-repo
 nano .chef/validation.pem</pre>
 </div>
 <p>Time to create a new user and a private key using the web UI of Chef:</p>
-<div class="highlight-python"><pre>https://chef-www.company.con:444/clients/new
-na .chef/fudriot.pem</pre>
+<div class="highlight-python"><pre>https://chef.company.com:444/clients/new
+cd chef-repo
+nano .chef/USERNAME.pem</pre>
 </div>
 <p>The connection with the Chef server can be established and tested using knife:</p>
 <div class="highlight-python"><pre># Should display a list of client
@@ -273,14 +286,26 @@ knife client list</pre>
 <div class="section" id="part-iii-client-server-installation">
 <h2>Part III - Client Server Installation<a class="headerlink" href="#part-iii-client-server-installation" title="Permalink to this headline">¶</a></h2>
 <p>Chef client is the command that will fetch the recipe from the Chef server, configure according to local variables (e.g. IP address, host name) and execute them eventually. This command requires root privileges are run with sudo. One of the easiest way of installing a Chef client is to run the knife bootstrap command:</p>
-<div class="highlight-python"><pre>knife bootstrap HOSTNAME -x fudriot --sudo</pre>
+<div class="highlight-python"><pre>knife bootstrap HOSTNAME -x USERNAME --sudo</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To find HOSTNAME run command <tt class="docutils literal"><span class="pre">hostname</span> <span class="pre">-f</span></tt> on the target.</p>
 </div>
 <p>To ensure the Chef client has been correctly initialized, test with:</p>
-<div class="highlight-python"><pre>knife client show HOSTNAME</pre>
+<div class="highlight-python"><pre>knife node list
+knife node show HOSTNAME
+
+knife cookbook list
+&gt; should be empty since no cookbook has been uploaded to the Chef server yet</pre>
+</div>
+<p>Now that we have completed the installation, this is the moment to upload data to the Chef server such as cookbook, roles and so forth... For doing that, we are going to ask <tt class="docutils literal"><span class="pre">spiceweasel</span></tt> to give us a hand by generating some Chef command to initialize our infrastructure:</p>
+<div class="highlight-python"><pre>cd chef-repo
+spiceweasel infrastructure.yml
+&gt; should display a list of command among them cookbooks and roles. Copy / paste these commands in the console
+
+# Alternatively, if command 'parallel' is installed, one can tell parallel to execute these command for us.
+spiceweasel infrastructure.yml | parallel -k -j 1'</pre>
 </div>
 </div>
 </div>

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tutorials &mdash; Chef in practice 1.0.0 documentation</title>
+    <title>Updating Documentation &mdash; Chef in practice 1.0.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Chef in practice 1.0.0 documentation" href="../index.html" />
-    <link rel="next" title="How to version a new project?" href="ProjectVersioning.html" />
-    <link rel="prev" title="Functional Testing" href="../04-FunctionalityTesting/Index.html" /> 
+    <link rel="up" title="Tutorials" href="Index.html" />
+    <link rel="next" title="Appendix" href="../10-Appendix/Index.html" />
+    <link rel="prev" title="Writing Functional Test" href="WritingFunctionalTest.html" /> 
   </head>
   <body>
     <div class="header-wrapper">
@@ -35,9 +36,9 @@
         <div class="headertitle"><a
           href="../Index.html">Chef in practice 1.0.0 documentation</a></div>
         <div class="rel">
-          <a href="../04-FunctionalityTesting/Index.html" title="Functional Testing"
+          <a href="WritingFunctionalTest.html" title="Writing Functional Test"
              accesskey="P">previous</a> |
-          <a href="ProjectVersioning.html" title="How to version a new project?"
+          <a href="../10-Appendix/Index.html" title="Appendix"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -53,16 +54,38 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="tutorials">
-<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
-<p>This section contains following tutorials:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ProjectVersioning.html">How to version a new project?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WritingUnitTest.html">Writing Unit Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WritingFunctionalTest.html">Writing Functional Test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="UpdatingDocumentation.html">Updating Documentation</a></li>
-</ul>
+  <div class="section" id="updating-documentation">
+<h1>Updating Documentation<a class="headerlink" href="#updating-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The documentation is written using <a class="reference external" href="http://sphinx.pocoo.org/rest.html">Sphinx</a> as documentation generator that converts reStructuredText (reST) syntax into HTML.</p>
+<div class="section" id="installing-sphinx">
+<h2>Installing Sphinx<a class="headerlink" href="#installing-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>Installing Sphinx:</p>
+<div class="highlight-python"><pre>    # On Ubuntu system
+    apt-get install python-pip
+
+    # Other system
+    easy_install pip
+
+    # Install Sphinx
+pip install sphinx</pre>
+</div>
+<p>Getting the documentation from the Git repository:</p>
+<div class="highlight-python"><pre>git clone --recusrive git@github.com:visay/chef-repo.git</pre>
+</div>
+<p>Generating documentation:</p>
+<div class="highlight-python"><pre>cd path/chef-repo/documentation
+
+# Chef all possible commands
+make
+
+# Before regenerating the documentation, clean the build folder first as security measure
+make clean; make html
+
+# Add an push to Git
+git add -A
+git ci -m "Update documentation"
+git push</pre>
+</div>
 </div>
 </div>
 
@@ -78,11 +101,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../02-ContinuousIntegration/Index.html">Continuous Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03-UnitTesting/Index.html">Unit Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04-FunctionalityTesting/Index.html">Functional Testing</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Tutorials</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="Index.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ProjectVersioning.html">How to version a new project?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="WritingUnitTest.html">Writing Unit Test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="WritingFunctionalTest.html">Writing Functional Test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="UpdatingDocumentation.html">Updating Documentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Updating Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../10-Appendix/Index.html">Appendix</a></li>
@@ -106,14 +129,14 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="../04-FunctionalityTesting/Index.html" title="Functional Testing"
+          <a href="WritingFunctionalTest.html" title="Writing Functional Test"
              >previous</a> |
-          <a href="ProjectVersioning.html" title="How to version a new project?"
+          <a href="../10-Appendix/Index.html" title="Appendix"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>
             <br/>
-            <a href="../_sources/05-Tutorials/Index.txt"
+            <a href="../_sources/05-Tutorials/UpdatingDocumentation.txt"
                rel="nofollow">Show Source</a>
         </div>
 
