@@ -1,6 +1,21 @@
 # todo: add oh-my-zsh as recipe
 # todo: change role in ci.web-essentials.asia
-# todo: fix apache
+# todo: fix apache on web-esentials.asia
+# todo: add a substitue on documentation for Git repo
+
+
+# INSTALL SERVER
+
+#cd /usr/share/php/PHP/CodeSniffer/Standards
+#svn co http://subversion.assembla.com/svn/pti/libraries/pear/PEAR/PHP/CodeSniffer/Standards/TYPO3 TYPO3
+#svn co http://subversion.assembla.com/svn/pti/libraries/pear/PEAR/PHP/CodeSniffer/Standards/TYPO3v4 TYPO3v4
+
+#svn co https://svn.typo3.org/Teams/forge.typo3.org/hudson-helpers/tools/PHP_CodeSniffer/TYPO3/trunk/ TYPO3
+#svn co https://svn.typo3.org/Teams/forge.typo3.org/hudson-helpers/tools/PHP_CodeSniffer/TYPO3v4/trunk/ TYPO3v4
+
+
+#-> ADD AUTOMATIC UPGRADE PEAR
+#http://www.assembla.com/code/pti/subversion/nodes/build/automatic-pear-update/build.xml
 
 cookbooks:
 
@@ -26,11 +41,8 @@ cookbooks:
 
 roles:
   - base:
-  - web:
-  - web-typo3:
-  - ci:
-  - unit-test:
-  - functional-test:
+  - typo3-server:
+  - ci-server:
 
 #data bags:
 #  - apps:

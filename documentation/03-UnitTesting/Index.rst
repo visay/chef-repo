@@ -41,28 +41,16 @@ In order to be able to run Unit Tests in the frame of a TYPO3 website, the serve
 Installing
 --------------------------------
 
-Installing a PHP Unit Test environment using Chef is about setting the appropriate roles.
-
-::
+PHP Functional Test environment is already included in role "ci-server" previously installed::
 
 	# Edit role to the HOSTNAME (e.g ci.company.com) .
-	knife node edit HOSTNAME
+	knife node show HOSTNAME
 
-	# Verify the HOSTNAME has the recipes in the right order:
-	 "run_list": [
-	   "role[base]",
-	   "role[web]",
-	   "role[web-typo3]",
-	   "role[ci]",
-	   "role[unit-test]"
-	 ]
+	> Should display something like bellow
 
-	# Login into the client and run chef-client to execute the recipes
-	ssh HOSTNAME
-	sudo chef-client
+	Node Name:   HOSTNAME
+	Run List:    role[ci-server]
+	Recipes:     apt, ntp, iptables, base, base::firewall, apache2, mysql::server, php, typo3, jenkins, jenkins::proxy_apache2, unit-test
 
-	# Alternatively, chef-client can be launched from the workstation
-	knife ssh name:ci* -x USERNAM "sudo chef-client"
-
-At the end of the installation, a new Job has been created within |CI|. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.
+At the end of the installation, a new Job was created within |CI|. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.
 

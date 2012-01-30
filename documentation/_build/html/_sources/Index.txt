@@ -1,11 +1,8 @@
-.. Chef in practice documentation master file, created by
-   sphinx-quickstart on Wed Jan 25 11:47:03 2012.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Quality Assurance With Unit and Functional Tests!
+==================================================
 
+This will cover
 
-Welcome to Chef in practice's documentation!
-============================================
 
 Contents:
 
