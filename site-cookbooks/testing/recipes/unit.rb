@@ -25,7 +25,7 @@ php_pear "PEAR" do
 end
 
 # REGISTER NEW PEAR CHANNELS
-['pear.phpqatools.org', 'pear.symfony-project.com', 'pear.phpunit.de', 'pear.phpmd.org', 'pear.pdepend.org', 'components.ez.no'].each do |channel|
+['pear.phpqatools.org', 'pear.symfony-project.com', 'pear.phpunit.de', 'pear.phpmd.org', 'pear.pdepend.org', 'components.ez.no', 'pear.typo3.org'].each do |channel|
   php_pear_channel channel do
     #action [:discover, :update]
     action :discover
@@ -53,6 +53,18 @@ end
 
 php_pear "PHP_PMD" do
   channel "pear.phpmd.org"
+  options "--alldeps"
+  action :install
+end
+
+php_pear "PHPCS_TYPO3_SniffPool" do
+  channel "pear.typo3.org"
+  options "--alldeps"
+  action :install
+end
+
+php_pear "PHPCS_TYPO3v4_Standard" do
+  channel "pear.typo3.org"
   options "--alldeps"
   action :install
 end

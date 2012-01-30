@@ -8,9 +8,6 @@
 #svn co https://svn.typo3.org/Teams/forge.typo3.org/hudson-helpers/tools/PHP_CodeSniffer/TYPO3v4/trunk/ TYPO3v4
 
 
-#-> ADD AUTOMATIC UPGRADE PEAR
-#http://www.assembla.com/code/pti/subversion/nodes/build/automatic-pear-update/build.xml
-
 cookbooks:
   - base:                # (site-cookbook)
   - apt:
@@ -26,6 +23,7 @@ cookbooks:
   - openssl:             # -> dependency mysql
   - runit:               # -> dependency jenkins
   - java:                # -> dependency jenkins
+  - ant:
 
   ############
   - apache2:
