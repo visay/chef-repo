@@ -24,22 +24,16 @@ Here is an overview of what tools we need to install:
 Installing
 --------------------------------
 
-Installing a PHP Unit Test environment using Chef is about setting the appropriate roles.
-
-::
+PHP Functional Test environment is already included in role "ci-server" previously installed::
 
 	# Edit role to the HOSTNAME (e.g ci.company.com) .
-	knife node edit HOSTNAME
+	knife node show HOSTNAME
 
-	# Add role for key "run_list"
-	"role[functional-test]"
+	> Should display something like bellow
 
-	# Login into the client and run chef-client to execute the recipes
-	ssh HOSTNAME
-	sudo chef-client
-
-	# Alternatively, chef-client can be launched from the workstation
-	knife ssh name:ci* -x USERNAM "sudo chef-client"
+	Node Name:   HOSTNAME
+	Run List:    role[ci-server]
+	Recipes:     apt, ntp, iptables, base, base::firewall, apache2, mysql::server, php, typo3, jenkins, jenkins::proxy_apache2, unit-test, functional-test
 
 At the end of the installation, ``behat`` command should be available in the terminal. Refer to `Writing Functional Testing`_ for more information.
 

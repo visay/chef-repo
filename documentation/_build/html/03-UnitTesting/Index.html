@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Unit Testing &mdash; Chef in practice 1.0.0 documentation</title>
+    <title>Unit Testing &mdash; Testing in practice 1.0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0.0',
+        VERSION:     '1.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="Chef in practice 1.0.0 documentation" href="../index.html" />
+    <link rel="top" title="Testing in practice 1.0.1 documentation" href="../index.html" />
     <link rel="next" title="Functional Testing" href="../04-FunctionalityTesting/Index.html" />
     <link rel="prev" title="Continuous Integration" href="../02-ContinuousIntegration/Index.html" /> 
   </head>
@@ -33,14 +33,12 @@
     <div class="header-wrapper">
       <div class="header">
         <div class="headertitle"><a
-          href="../Index.html">Chef in practice 1.0.0 documentation</a></div>
+          href="../Index.html">Testing in practice 1.0.1 documentation</a></div>
         <div class="rel">
           <a href="../02-ContinuousIntegration/Index.html" title="Continuous Integration"
              accesskey="P">previous</a> |
           <a href="../04-FunctionalityTesting/Index.html" title="Functional Testing"
-             accesskey="N">next</a> |
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a>
+             accesskey="N">next</a>
         </div>
        </div>
     </div>
@@ -79,27 +77,17 @@
 </div>
 <div class="section" id="installing">
 <h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
-<p>Installing a PHP Unit Test environment using Chef is about setting the appropriate roles.</p>
+<p>PHP Functional Test environment is already included in role &#8220;ci-server&#8221; previously installed:</p>
 <div class="highlight-python"><pre># Edit role to the HOSTNAME (e.g ci.company.com) .
-knife node edit HOSTNAME
+knife node show HOSTNAME
 
-# Verify the HOSTNAME has the recipes in the right order:
- "run_list": [
-   "role[base]",
-   "role[web]",
-   "role[web-typo3]",
-   "role[ci]",
-   "role[unit-test]"
- ]
+&gt; Should display something like bellow
 
-# Login into the client and run chef-client to execute the recipes
-ssh HOSTNAME
-sudo chef-client
-
-# Alternatively, chef-client can be launched from the workstation
-knife ssh name:ci* -x USERNAM "sudo chef-client"</pre>
+Node Name:   HOSTNAME
+Run List:    role[ci-server]
+Recipes:     apt, ntp, iptables, base, base::firewall, apache2, mysql::server, php, typo3, jenkins, jenkins::proxy_apache2, unit-test</pre>
 </div>
-<p>At the end of the installation, a new Job has been created within <a class="reference external" href="http://ci.web-essentials.asia">http://ci.web-essentials.asia</a>. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.</p>
+<p>At the end of the installation, a new Job was created within <a class="reference external" href="http://ci.web-essentials.asia">http://ci.web-essentials.asia</a>. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.</p>
 </div>
 </div>
 
@@ -146,9 +134,7 @@ knife ssh name:ci* -x USERNAM "sudo chef-client"</pre>
           <a href="../02-ContinuousIntegration/Index.html" title="Continuous Integration"
              >previous</a> |
           <a href="../04-FunctionalityTesting/Index.html" title="Functional Testing"
-             >next</a> |
-          <a href="../genindex.html" title="General Index"
-             >index</a>
+             >next</a>
             <br/>
             <a href="../_sources/03-UnitTesting/Index.txt"
                rel="nofollow">Show Source</a>

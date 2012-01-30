@@ -269,16 +269,30 @@ To ensure the Chef client has been correctly initialized, test with::
 	knife cookbook list
 	> should be empty since no cookbook has been uploaded to the Chef server yet
 
-Now that we have completed the installation, this is the moment to upload data to the Chef server such as cookbook, roles and so forth... For doing that, we are going to ask ``spiceweasel`` to give us a hand by generating some Chef command to initialize our infrastructure::
+Part IV - Finishing installation
+----------------------------------------
 
+Now that we have completed the installation, this is the time to customize values within the roles and upload data to the Chef server such as cookbook, roles and so forth... For doing that, we could ask ``spiceweasel`` to give us a hand for generating Chef commands to initialize our infrastructure::
+
+	# Open roles and customize values
 	cd chef-repo
+	nano roles/*.rb
+
+	# Add more possible user in data bag
+	data_bags/users/USERNAME.json
+
+	# Add this users into infrastructure.yml
+
 	spiceweasel infrastructure.yml
 	> should display a list of command among them cookbooks and roles. Copy / paste these commands in the console
 
 	# Alternatively, if command 'parallel' is installed, one can tell parallel to execute these command for us.
 	spiceweasel infrastructure.yml | parallel -k -j 1'
 
-.. Link bellow
+
+.. ..........................
+.. Link glossary
+.. ..........................
 
 .. _page: http://wiki.opscode.com/display/chef/Installing+Chef+Server+on+Debian+or+Ubuntu+using+Packages
 .. _Rake: http://rake.rubyforge.org/

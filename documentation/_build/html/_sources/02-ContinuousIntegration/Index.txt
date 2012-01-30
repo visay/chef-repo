@@ -18,12 +18,13 @@ Installing Jenkins
 Jenkins is installed through Chef. Before launching the chef-client, consider updating the info inside :file:`roles/ci.rb` to suit the domain of the company. Then, run the command bellow::
 
 	# Add new role to the HOSTNAME (e.g ci.company.com) .
-	knife node run_list add HOSTNAME 'role[base]'
-	knife node run_list add HOSTNAME 'role[web]'
-	knife node run_list add HOSTNAME 'role[ci]'
+	knife node run_list add HOSTNAME 'role[ci-server]'
 
 	#Login into the client and run chef-client to execute the recipes
 	ssh HOSTNAME
 	sudo chef-client
+
+	# Alternatively, chef-client can be launched from the workstation
+	knife ssh name:ci* -x USERNAM "sudo chef-client"
 
 At the end of the installation, a Jenkins instance should run at http://ci.company.com

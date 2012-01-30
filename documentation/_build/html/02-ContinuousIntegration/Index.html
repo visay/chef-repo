@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Continuous Integration &mdash; Chef in practice 1.0.0 documentation</title>
+    <title>Continuous Integration &mdash; Testing in practice 1.0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0.0',
+        VERSION:     '1.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="Chef in practice 1.0.0 documentation" href="../index.html" />
+    <link rel="top" title="Testing in practice 1.0.1 documentation" href="../index.html" />
     <link rel="next" title="Unit Testing" href="../03-UnitTesting/Index.html" />
     <link rel="prev" title="Chef" href="../01-Installation/Index.html" /> 
   </head>
@@ -33,14 +33,12 @@
     <div class="header-wrapper">
       <div class="header">
         <div class="headertitle"><a
-          href="../Index.html">Chef in practice 1.0.0 documentation</a></div>
+          href="../Index.html">Testing in practice 1.0.1 documentation</a></div>
         <div class="rel">
           <a href="../01-Installation/Index.html" title="Chef"
              accesskey="P">previous</a> |
           <a href="../03-UnitTesting/Index.html" title="Unit Testing"
-             accesskey="N">next</a> |
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a>
+             accesskey="N">next</a>
         </div>
        </div>
     </div>
@@ -64,13 +62,14 @@
 <h2>Installing Jenkins<a class="headerlink" href="#installing-jenkins" title="Permalink to this headline">¶</a></h2>
 <p>Jenkins is installed through Chef. Before launching the chef-client, consider updating the info inside <tt class="file docutils literal"><span class="pre">roles/ci.rb</span></tt> to suit the domain of the company. Then, run the command bellow:</p>
 <div class="highlight-python"><pre># Add new role to the HOSTNAME (e.g ci.company.com) .
-knife node run_list add HOSTNAME 'role[base]'
-knife node run_list add HOSTNAME 'role[web]'
-knife node run_list add HOSTNAME 'role[ci]'
+knife node run_list add HOSTNAME 'role[ci-server]'
 
 #Login into the client and run chef-client to execute the recipes
 ssh HOSTNAME
-sudo chef-client</pre>
+sudo chef-client
+
+# Alternatively, chef-client can be launched from the workstation
+knife ssh name:ci* -x USERNAM "sudo chef-client"</pre>
 </div>
 <p>At the end of the installation, a Jenkins instance should run at <a class="reference external" href="http://ci.company.com">http://ci.company.com</a></p>
 </div>
@@ -117,9 +116,7 @@ sudo chef-client</pre>
           <a href="../01-Installation/Index.html" title="Chef"
              >previous</a> |
           <a href="../03-UnitTesting/Index.html" title="Unit Testing"
-             >next</a> |
-          <a href="../genindex.html" title="General Index"
-             >index</a>
+             >next</a>
             <br/>
             <a href="../_sources/02-ContinuousIntegration/Index.txt"
                rel="nofollow">Show Source</a>

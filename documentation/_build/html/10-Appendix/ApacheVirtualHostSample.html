@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Apache Virtual Host Sample &mdash; Chef in practice 1.0.0 documentation</title>
+    <title>Apache Virtual Host Sample &mdash; Testing in practice 1.0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0.0',
+        VERSION:     '1.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="Chef in practice 1.0.0 documentation" href="../index.html" />
+    <link rel="top" title="Testing in practice 1.0.1 documentation" href="../index.html" />
     <link rel="up" title="Appendix" href="Index.html" />
     <link rel="next" title="Knife Configuration Sample" href="KnifeSample.html" />
     <link rel="prev" title="Appendix" href="Index.html" /> 
@@ -34,14 +34,12 @@
     <div class="header-wrapper">
       <div class="header">
         <div class="headertitle"><a
-          href="../Index.html">Chef in practice 1.0.0 documentation</a></div>
+          href="../Index.html">Testing in practice 1.0.1 documentation</a></div>
         <div class="rel">
           <a href="Index.html" title="Appendix"
              accesskey="P">previous</a> |
           <a href="KnifeSample.html" title="Knife Configuration Sample"
-             accesskey="N">next</a> |
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a>
+             accesskey="N">next</a>
         </div>
        </div>
     </div>
@@ -122,7 +120,7 @@
                                 RewriteEngine On
                                 RewriteCond %{SERVER_PORT} !^444$
                                 # CHANGEME
-                                RewriteRule ^(.*)$ https://chef.CHANGEME:444 [R,L]
+                                RewriteRule ^(.*)$ https://www.chef.CHANGEME:444 [R,L]
                 &lt;/IfModule&gt;
 &lt;/VirtualHost&gt;
 
@@ -130,7 +128,7 @@
 # HTTPS CONFIGURATION
 
 &lt;VirtualHost *:444&gt;
-                ServerName chef.CHANGEME
+                ServerName www.chef.CHANGEME
 
                 DocumentRoot /usr/share/chef-server-webui/public
 
@@ -198,9 +196,7 @@
           <a href="Index.html" title="Appendix"
              >previous</a> |
           <a href="KnifeSample.html" title="Knife Configuration Sample"
-             >next</a> |
-          <a href="../genindex.html" title="General Index"
-             >index</a>
+             >next</a>
             <br/>
             <a href="../_sources/10-Appendix/ApacheVirtualHostSample.txt"
                rel="nofollow">Show Source</a>

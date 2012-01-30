@@ -70,7 +70,7 @@ Replace ``CHANGME`` by the domain name of your company and put this file under
 					RewriteEngine On
 					RewriteCond %{SERVER_PORT} !^444$
 					# CHANGEME
-					RewriteRule ^(.*)$ https://chef.CHANGEME:444 [R,L]
+					RewriteRule ^(.*)$ https://www.chef.CHANGEME:444 [R,L]
 			</IfModule>
 	</VirtualHost>
 
@@ -78,7 +78,7 @@ Replace ``CHANGME`` by the domain name of your company and put this file under
 	# HTTPS CONFIGURATION
 
 	<VirtualHost *:444>
-			ServerName chef.CHANGEME
+			ServerName www.chef.CHANGEME
 
 			DocumentRoot /usr/share/chef-server-webui/public
 
