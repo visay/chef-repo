@@ -16,9 +16,7 @@ Bootstrapping Environment
 	cd /my/document/public_html
 	php typo3/cli_dispatch.phpsh  phpunit typo3conf/ext/EXTENSION/Tests
 
-
 	# Add a build.xml file into your project and adjust it
 
 	# Download the Ant build file
     curl -O https://raw.github.com/fudriot/typo3-project-testing/master/build.xml
-

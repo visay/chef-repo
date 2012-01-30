@@ -82,6 +82,7 @@ jenkins_cli "install-plugin plot"
 jenkins_cli "install-plugin pmd"
 jenkins_cli "install-plugin violations"
 jenkins_cli "install-plugin xunit"
+jenkins_cli "install-plugin greenballs"
 
 
 # INSTALL PHP TEMPLATE
