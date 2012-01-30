@@ -1,8 +1,3 @@
-# todo: fix apache on web-esentials.asia
-# todo: add a substitue on documentation for Git repo
-# todo: merge testing
-
-
 # INSTALL SERVER
 
 #cd /usr/share/php/PHP/CodeSniffer/Standards
@@ -38,8 +33,7 @@ cookbooks:
   - php:
   - typo3:               # (site-cookbook)
   - jenkins:
-  - functional-test:     # (site-cookbook)
-  - unit-test:           # (site-cookbook)
+  - testing:             # (site-cookbook)
 
 roles:
   - base:
@@ -51,14 +45,6 @@ data bags:
     - essentials
 
 #nodes:
-   # MANGO
-#  - mango:
-#    - role[base] role[web] role[web-typo3] role[ci] role[unit-test]
+#  - ci.COMPANY.COM:
+#    - role[ci-server]
 #    - -x fudriot --sudo
-     # knife node run_list add mango 'role[base]'
-     # knife node run_list add mango 'role[web]'
-     # knife node run_list add mango 'role[web-typo3]'
-     # knife node run_list add mango 'role[ci]'
-     # knife node run_list add mango 'role[unit-test]'
-     # knife node run_list add mango 'role[behaviour]'
-     # knife ssh name:mango -x fudriot "sudo chef-client"

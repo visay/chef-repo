@@ -50,7 +50,7 @@ PHP Functional Test environment is already included in role "ci-server" previous
 
 	Node Name:   HOSTNAME
 	Run List:    role[ci-server]
-	Recipes:     apt, ntp, iptables, base, base::firewall, apache2, mysql::server, php, typo3, jenkins, jenkins::proxy_apache2, unit-test
+	Recipes:     (..) testing::unit
 
 At the end of the installation, a new Job was created within |CI|. This job contains default configuration and is set as disabled because it will never be used as such but will be copied as template for new real jobs.
 

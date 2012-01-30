@@ -7,7 +7,7 @@ run_list "role[base]",
          "role[typo3-server]",
          "recipe[jenkins]",
          "recipe[jenkins::proxy_apache2]",
-         "recipe[unit-test]"
+         "recipe[testing::unit]"
         #"recipe[functional-test]"
 
 

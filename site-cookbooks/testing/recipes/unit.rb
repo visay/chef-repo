@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: unit-test
+# Cookbook Name:: testing
 # Recipe:: default
 #
 # Copyright 2012, Fabien Udriot <fabien@omic.ch>
