@@ -1,0 +1,8 @@
+{
+	"id": "essentials",
+	"groups": "",
+	"comment": "Web Essentials",
+	"email": "info@web-essentials.asia",
+	"shell": "/bin/zsh",
+	"ssh_keys": ""
+}

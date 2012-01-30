@@ -1,7 +1,6 @@
-# todo: add oh-my-zsh as recipe
-# todo: change role in ci.web-essentials.asia
 # todo: fix apache on web-esentials.asia
 # todo: add a substitue on documentation for Git repo
+# todo: merge testing
 
 
 # INSTALL SERVER
@@ -18,19 +17,22 @@
 #http://www.assembla.com/code/pti/subversion/nodes/build/automatic-pear-update/build.xml
 
 cookbooks:
-
   - base:                # (site-cookbook)
-  - oh-my-zsh:
   - apt:
   - ntp:
   - iptables:
-
+  - user:
+  - yum:
+  - git:
+  - zsh:
+  - oh-my-zsh:
   - build-essential:
   - xml:                 # -> dependency mysql
   - openssl:             # -> dependency mysql
   - runit:               # -> dependency jenkins
   - java:                # -> dependency jenkins
 
+  ############
   - apache2:
   - mysql:
   - php:
@@ -44,9 +46,9 @@ roles:
   - typo3-server:
   - ci-server:
 
-#data bags:
-#  - apps:
-#    - typo3
+data bags:
+  - users:
+    - essentials
 
 #nodes:
    # MANGO
