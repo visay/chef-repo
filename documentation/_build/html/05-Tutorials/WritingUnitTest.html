@@ -55,6 +55,30 @@
   <div class="section" id="writing-unit-test">
 <h1>Writing Unit Test<a class="headerlink" href="#writing-unit-test" title="Permalink to this headline">¶</a></h1>
 <p>Behat was inspired by Ruby&#8217;s Cucumber project and especially its syntax part (Gherkin). Gherkin is the language that Cucumber understands. It is a Business Readable, Domain Specific Language that lets you describe software’s behaviour without detailing how that behaviour is implemented. Gherkin serves two purposes – documentation and automated tests.</p>
+<p>Before running PHPUnit we need to ensure</p>
+<ul>
+<li><p class="first">EXT:phpunit is verioned within the website</p>
+</li>
+<li><p class="first">Make sure a BE User &#8220;_cli_phpunit&#8221; is created</p>
+</li>
+<li><p class="first"><tt class="file docutils literal"><span class="pre">build.xml</span></tt> is added and personalized along with <tt class="file docutils literal"><span class="pre">build/phpcs.xml</span></tt> and <tt class="file docutils literal"><span class="pre">build/phpmd.xml</span></tt></p>
+</li>
+<li><p class="first"><tt class="file docutils literal"><span class="pre">extTables.php</span></tt> has the following:</p>
+<div class="highlight-python"><pre># typo3conf/extTables.php
+require_once(t3lib_extMgm::extPath('phpunit') . 'PEAR/PHPUnit/Autoload.php');
+PHP_CodeCoverage_Filter::getInstance()-&gt;addDirectoryToBlacklist(t3lib_extMgm::extPath('phpunit'));
+PHP_CodeCoverage_Filter::getInstance()-&gt;addDirectoryToBlacklist(PATH_site . 'typo3_src');</pre>
+</div>
+</li>
+<li><p class="first">A core is defined:</p>
+<div class="highlight-python"><pre>mkdir /t3core/typo3_src-4.5.11 (without git)
+cd /t3core/typo3_src.git
+git fetch --tags
+git checkout TYPO3_4-5-11; git submodule update
+./git-archive-all.sh  ; tar -xf  typo3_src.git.tar -C /t3core/typo3_src-4.5.11</pre>
+</div>
+</li>
+</ul>
 </div>
 
 

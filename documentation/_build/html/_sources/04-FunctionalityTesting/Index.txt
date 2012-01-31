@@ -33,7 +33,7 @@ PHP Functional Test environment is already included in role "ci-server" previous
 
 	Node Name:   HOSTNAME
 	Run List:    role[ci-server]
-	Recipes:     apt, ntp, iptables, base, base::firewall, apache2, mysql::server, php, typo3, jenkins, jenkins::proxy_apache2, unit-test, functional-test
+	Recipes:     (..) testing::functional
 
 At the end of the installation, ``behat`` command should be available in the terminal. Refer to `Writing Functional Testing`_ for more information.
 

@@ -19,6 +19,12 @@
 
 include_recipe "php"
 
+
+# INSTALL PHP MODULE FROM PACKAGE
+package "php5-mysql" do
+  action :install
+end
+
 # UPGRADE PEAR
 php_pear "PEAR" do
   action :upgrade
