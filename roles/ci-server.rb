@@ -8,9 +8,8 @@ run_list "role[base]",
          "recipe[jenkins]",
          "recipe[jenkins::proxy_apache2]",
          "recipe[ant]",
-         "recipe[testing::unit]"
-        #"recipe[functional-test]"
-
+         "recipe[testing::unit]",
+         "recipe[testing::functional]"
 
 # Attributes applied no matter what the node has set already.
 override_attributes "jenkins" => {
