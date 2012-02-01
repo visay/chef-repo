@@ -22,11 +22,13 @@ cookbooks:
   - php:
   - typo3:               # (site-cookbook)
   - jenkins:
+  - sonar:
   - testing:             # (site-cookbook)
 
 roles:
   - base:
   - typo3-server:
+  - metrics-server:
   - ci-server:
 
 data bags:

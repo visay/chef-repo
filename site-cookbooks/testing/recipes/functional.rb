@@ -26,7 +26,7 @@ php_pear "PEAR" do
 end
 
 # REGISTER NEW PEAR CHANNELS
-['pear.symfony-project.com', 'pear.phpunit.de', 'components.ez.no', 'pear.behat.org'].each do |channel|
+['pear.symfony-project.com', 'pear.phpunit.de', 'components.ez.no', 'pear.symfony.com', 'pear.behat.org'].each do |channel|
   php_pear_channel channel do
     #action [:discover, :update]
     action :discover
@@ -34,7 +34,8 @@ end
 end
 
 # INSTALL PACKAGE
-php_pear "behat-beta" do
+php_pear "behat" do
+  preferred_state "beta"
   channel "pear.behat.org"
   options "--alldeps"
   action :install

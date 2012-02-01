@@ -20,10 +20,24 @@
 include_recipe "php"
 
 # INSTALL NEW PHP MODULE FROM PACKAGE
-package "php5-mysql" do
-  action :install
-end
+#package "php5-mysql" do
+#  action :install
+#end
 
-package "php5-sqlite" do
-  action :install
-end
+#package "php5-sqlite" do
+#  action :install
+#end
+
+package "php5-mysql"
+package "php5-curl"
+package "php5-gd"
+#package "php5-mbstring"
+package "php5-xsl"
+package "php5-sqlite"
+#package "php5-openssl"
+#package "php5-soap"
+package "php5-ldap"
+#package "php5-posix"
+#package "php5-iconv"
+#package "php5-sockets"
+

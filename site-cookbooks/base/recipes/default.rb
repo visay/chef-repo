@@ -17,18 +17,7 @@
 # limitations under the License.
 #
 
-packages = [
-  'wget',
-  'curl',
-  'subversion',
-]
-
-case node[:platform]
-  when "debian", "ubuntu"
-    packages.each do |pkg|
-      package pkg do
-        action :install
-    end
-  end
-end
-
+package "unzip"
+package "wget"
+package "curl"
+package "subversion"
