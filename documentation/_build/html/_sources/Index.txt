@@ -3,12 +3,10 @@ In the software engineering, testing is an important part of the work ensuring o
 .. toctree::
 	:maxdepth: 2
 
-	01-Installation/Index
-	02-ContinuousIntegration/Index
-	03-UnitTesting/Index
-	04-FunctionalityTesting/Index
-	05-Tutorials/Index
-	10-Appendix/Index
+	Installation/Index
+	UnitTesting/Index
+	FunctionalityTesting/Index
+	Appendix/Index
 
 
 * Installation of Chef Server

@@ -1,0 +1,143 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Updating Documentation &mdash; Testing in practice 1.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Testing in practice 1.0.1 documentation" href="../index.html" />
+    <link rel="up" title="Appendix" href="Index.html" />
+    <link rel="prev" title="Knife Configuration Sample" href="KnifeSample.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../Index.html">Testing in practice 1.0.1 documentation</a></div>
+        <div class="rel">
+          <a href="KnifeSample.html" title="Knife Configuration Sample"
+             accesskey="P">previous</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="updating-documentation">
+<h1>Updating Documentation<a class="headerlink" href="#updating-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The documentation is written using <a class="reference external" href="http://sphinx.pocoo.org/rest.html">Sphinx</a> as documentation generator that converts reStructuredText (reST) syntax into HTML.</p>
+<div class="section" id="installing-sphinx">
+<h2>Installing Sphinx<a class="headerlink" href="#installing-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>Installing Sphinx:</p>
+<div class="highlight-python"><pre>    # On Ubuntu system
+    apt-get install python-pip
+
+    # Other system
+    easy_install pip
+
+    # Install Sphinx
+pip install sphinx</pre>
+</div>
+<p>Getting the documentation from the Git repository:</p>
+<div class="highlight-python"><pre>git clone --recusrive git@github.com:visay/chef-repo.git</pre>
+</div>
+<p>Generating documentation:</p>
+<div class="highlight-python"><pre>cd path/chef-repo/documentation
+
+# Chef all possible commands
+make
+
+# Before regenerating the documentation, clean the build folder first as security measure
+make clean; make html
+
+# Add an push to Git
+git add -A
+git ci -m "Update documentation"
+git push</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Installation/Index.html">Installing with Chef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UnitTesting/Index.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FunctionalityTesting/Index.html">Functional Testing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Index.html">Appendix</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ApacheVirtualHostSample.html">Apache Virtual Host Sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="KnifeSample.html">Knife Configuration Sample</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Updating Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="KnifeSample.html" title="Knife Configuration Sample"
+             >previous</a>
+            <br/>
+            <a href="../_sources/Appendix/UpdatingDocumentation.txt"
+               rel="nofollow">Show Source</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer">
+        &copy; Copyright 2012, Fabien Udriot.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
