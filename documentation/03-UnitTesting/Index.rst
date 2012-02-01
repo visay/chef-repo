@@ -20,7 +20,7 @@ Here is an overview of what tools we need to install:
 * phpmd_ (PHP Mess Detector) allows the definition of rules that operate on the raw data collected by PHP_Depend.
 * phploc_ measures the scope of a PHP project by, among other metrics, means of different forms of the Lines of Code (LOC) software metric.
 * PHP_CodeBrowser_ is a report generator that takes the XML output of the afore- mentioned tools as well as the sourcecode of the project as its input.
-* Although it is currently being replaced by more modern tools such as phpdox_, we will use PHPDocumentor_ for automated API documentation generation for PHP code in this book.
+* Although it is currently being replaced by more modern tools such as phpdox_, we will use PHPDocumentor_ for automated API documentation generation for PHP code.
 
 
 .. _PHPUnit: https://github.com/sebastianbergmann/phpunit/

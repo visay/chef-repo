@@ -22,4 +22,4 @@ Before running PHPUnit we need to ensure
 	cd /t3core/typo3_src.git
 	git fetch --tags
 	git checkout TYPO3_4-5-11; git submodule update
-	./git-archive-all.sh  ; tar -xf  typo3_src.git.tar -C /t3core/typo3_src-4.5.11
+	./git-archive-all.sh  && tar -xf  typo3_src.git.tar -C /t3core/typo3_src-4.5.11 && rm typo3_sr.git.tar
