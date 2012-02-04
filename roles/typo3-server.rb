@@ -10,6 +10,7 @@ run_list "recipe[apache2]",
          "recipe[php]",
          "recipe[typo3]"
 
-#run_list "recipe[apache2]", "recipe[apache2::mod_ssl]", "role[monitor]"
-
 #env_run_lists "prod" => ["recipe[apache2]"], "staging" => ["recipe[apache2::staging]"]
+override_attributes 'mysql' => {
+    'bind_address' => 'localhost'
+}

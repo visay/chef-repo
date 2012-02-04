@@ -15,6 +15,7 @@ cookbooks:
   - java:                # -> dependency jenkins
   - jpackage:
   - ant:
+  - maven:
 
   ############
   - apache2:
