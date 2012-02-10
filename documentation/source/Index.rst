@@ -3,9 +3,9 @@ In the software engineering, testing is an important part of the work ensuring o
 .. toctree::
 	:maxdepth: 2
 
-	Installation/Index
-	UnitTesting/Index
-	FunctionalityTesting/Index
+	Installation
+	UnitTesting
+	FunctionalityTesting
 	Appendix/Index
 
 
@@ -20,5 +20,9 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+.. .. *********************
+.. .. Links
+.. .. *********************
 .. _PHP: http://php.net/
 .. _TYPO3: http://typo3.org/

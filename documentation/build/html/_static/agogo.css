@@ -501,3 +501,12 @@ div.document {
 .figure {
     margin-bottom: 10px;
 }
+
+span.bullet {
+    color: #fff;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-family: "Verdana",Arial,sans-serif;
+    font-size: 9pt;
+}
