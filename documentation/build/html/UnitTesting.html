@@ -115,6 +115,31 @@ git checkout TYPO3_4-5-11; git submodule update
 </li>
 </ul>
 </div>
+<div class="section" id="configuring-rules-code-sniffer">
+<h2>Configuring Rules Code Sniffer<a class="headerlink" href="#configuring-rules-code-sniffer" title="Permalink to this headline">¶</a></h2>
+<p>Code Sniffer provides a mechanism to override default settings. Most of the time, the default configuration is set in the PHP Class of Code Sniffer itself. However, this is possible to override a value in the Standard XML file, commonly put in <tt class="docutils literal"><span class="pre">build/phpcs.xml</span></tt>. XML is the language to change such configuration. Let take an example, for the rule <tt class="docutils literal"><span class="pre">ValidCommentLineLength</span></tt> which has a default value of 80 characters:</p>
+<div class="highlight-python"><pre>&lt;rule ref="TYPO3.Commenting.ValidCommentLineLength" &gt;</pre>
+</div>
+<p>Assume we want to extend this limit to 130 characters, this can be achieved with following configuration:</p>
+<div class="highlight-python"><pre>&lt;rule ref="TYPO3.Commenting.ValidCommentLineLength" &gt;
+        &lt;properties&gt;
+                &lt;property name="maxCommentLength" value="130"/&gt;
+        &lt;/properties&gt;
+&lt;/rule&gt;</pre>
+</div>
+<p>Though, notice there is a bug in the code provided by the <a class="reference external" href="http://pear.typo3.org/">TYPO3 PEAR project</a> which hinders the overriding mechanism because the properties of the class are set as <strong>protected</strong> while they should be <strong>public</strong>. Changing the property visibility is not a bit deal and can be achieved by editing the source code:</p>
+<div class="highlight-python"><pre># Output the Home Path of PEAR.
+pear config-show | grep "PEAR directory"
+
+# Go to the PEAR
+cd /path/to/PEAR
+
+# Open the file involved
+nano -w PHP/CodeSniffer/Standards/TYPO3/Sniffs/Commenting/ValidCommentLineLengthSniff.php
+
+-&gt; Replace "protected" by "public"</pre>
+</div>
+</div>
 <div class="section" id="output-generated">
 <h2>Output generated<a class="headerlink" href="#output-generated" title="Permalink to this headline">¶</a></h2>
 <p>Jenkins is the tool for managing a continuous integration. Basically, Jenkins takes care of fetching the source code, running the metrics tools and generating report from that. Every extension has its own job within Jenkins. A typical view of a job is:</p>
@@ -163,6 +188,7 @@ git checkout TYPO3_4-5-11; git submodule update
 <li class="toctree-l2"><a class="reference internal" href="#what-is-a-unit-test">What is a Unit Test?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-php-quality-assurance-toolchain">The PHP Quality Assurance Toolchain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-the-environment">Configure the environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-rules-code-sniffer">Configuring Rules Code Sniffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-generated">Output generated</a></li>
 </ul>
 </li>

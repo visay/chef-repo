@@ -80,6 +80,36 @@ Configure the environment
 	./git-archive-all.sh  && tar -xf  typo3_src.git.tar -C /t3core/typo3_src-4.5.11 && rm typo3_sr.git.tar
 
 
+Configuring Rules Code Sniffer
+--------------------------------
+
+Code Sniffer provides a mechanism to override default settings. Most of the time, the default configuration is set in the PHP Class of Code Sniffer itself. However, this is possible to override a value in the Standard XML file, commonly put in ``build/phpcs.xml``. XML is the language to change such configuration. Let take an example, for the rule ``ValidCommentLineLength`` which has a default value of 80 characters::
+
+	<rule ref="TYPO3.Commenting.ValidCommentLineLength" >
+
+Assume we want to extend this limit to 130 characters, this can be achieved with following configuration::
+
+	<rule ref="TYPO3.Commenting.ValidCommentLineLength" >
+		<properties>
+			<property name="maxCommentLength" value="130"/>
+		</properties>
+	</rule>
+
+Though, notice there is a bug in the code provided by the `TYPO3 PEAR project`_ which hinders the overriding mechanism because the properties of the class are set as **protected** while they should be **public**. Changing the property visibility is not a bit deal and can be achieved by editing the source code::
+
+	# Output the Home Path of PEAR.
+	pear config-show | grep "PEAR directory"
+
+	# Go to the PEAR
+	cd /path/to/PEAR
+
+	# Open the file involved
+	nano -w PHP/CodeSniffer/Standards/TYPO3/Sniffs/Commenting/ValidCommentLineLengthSniff.php
+
+	-> Replace "protected" by "public"
+
+.. _TYPO3 PEAR project: http://pear.typo3.org/
+
 Output generated
 --------------------------------
 
