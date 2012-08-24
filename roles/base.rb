@@ -1,7 +1,6 @@
 name "base"
 description "base role applied to all nodes."
 
-#, git, svn, curl, wget, openssh
 run_list(
   "recipe[apt]",
   "recipe[ntp]",
@@ -12,8 +11,6 @@ run_list(
   "recipe[oh-my-zsh]"
 )
 
-# -> should be rather override_attributes
-# Attributes applied no matter what the node has set already.
 override_attributes(
   "ntp" => {
     "servers" => [
