@@ -1,4 +1,10 @@
+.chef/knife.local.rb
 .rake_test_cache
-.chef*
+.idea
+.vagrant
+*.pem
+cookbooks/*/metadata.json
+site-cookbooks/*/metadata.json
+tmp/
 .project
 .idea
