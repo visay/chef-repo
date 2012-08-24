@@ -1,4 +1,5 @@
 source "https://rubygems.org"
 
-#gem "librarian-chef", "~> 1.2.0"
+gem "chef"
 gem "foodcritic", "~> 1.2.0"
+gem "librarian", "~> 0.0.24"
