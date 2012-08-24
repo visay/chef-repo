@@ -2,8 +2,6 @@ name "ci-server"
 description "Roles for a Continuous Integration server"
 
 run_list(
-  "role[base]",
-  "role[typo3-server]",
   "recipe[jenkins]",
   "recipe[jenkins::proxy_apache2]",
   "recipe[ant]",
