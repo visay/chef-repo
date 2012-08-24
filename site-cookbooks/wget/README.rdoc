@@ -1,0 +1,15 @@
+= DESCRIPTION:
+
+Installs/Configures wget
+
+= REQUIREMENTS:
+
+none
+
+= ATTRIBUTES:
+
+none
+
+= USAGE:
+
+Add cookbook to run_list to install package.

@@ -1,0 +1,16 @@
+= DESCRIPTION:
+
+Installs/Configures zip and unzip
+
+= REQUIREMENTS:
+
+none
+
+= ATTRIBUTES:
+
+none
+
+= USAGE:
+
+Add cookbook to run_list to install package.
+
