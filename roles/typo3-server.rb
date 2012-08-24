@@ -6,7 +6,12 @@ run_list(
   "recipe[apache2]",
   "recipe[mysql::server]",
   "recipe[php]",
-  "recipe[typo3]"
+  "recipe[php::module_mysql]",
+  "recipe[php::module_curl]",
+  "recipe[php::module_gd]",
+  "recipe[php::module_xsl]",
+  "recipe[php::module_sqlite3]",
+  "recipe[php::module_ldap]"
 )
 
 override_attributes(

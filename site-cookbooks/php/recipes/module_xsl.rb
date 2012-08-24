@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: typo3
-# Recipe:: default
+# Author::  Christian Trabold (<typo3@christian-trabold.de>)
+# Cookbook Name:: php
+# Recipe:: module_xsl
 #
-# Copyright 2012, Fabien Udriot <fabien@omic.ch>
+# Copyright 2012, Christian Trabold
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,27 +18,11 @@
 # limitations under the License.
 #
 
-include_recipe "php"
-
-# INSTALL NEW PHP MODULE FROM PACKAGE
-#package "php5-mysql" do
-#  action :install
-#end
-
-#package "php5-sqlite" do
-#  action :install
-#end
-
-package "php5-mysql"
-package "php5-curl"
-package "php5-gd"
-#package "php5-mbstring"
-package "php5-xsl"
-package "php5-sqlite"
-#package "php5-openssl"
-#package "php5-soap"
-package "php5-ldap"
-#package "php5-posix"
-#package "php5-iconv"
-#package "php5-sockets"
-
+case node['platform']
+when "centos", "redhat", "fedora"
+  package "php-xml"
+when "debian", "ubuntu"
+  package "php5-xsl" do
+    action :upgrade
+  end
+end
