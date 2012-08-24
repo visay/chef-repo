@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook "ant"             , "0.10.1"
+cookbook "apache2"         , "1.0.2"
+cookbook "apt"             , "1.2.2"
+cookbook "build-essential" , "1.0.0"
+cookbook "git"             , "0.10.0"
+cookbook "iptables"        , "0.10.0"
+cookbook "java"            , "1.1"
+cookbook "jenkins"         , "0.6"
+cookbook "jpackage"        , "0.10.0"
+cookbook "maven"           , "0.10.0"
+cookbook "mysql"           , "1.2.2"
+cookbook "ntp"             , "1.1.0"
+cookbook "oh-my-zsh"       , "0.4.2"
+cookbook "openssl"         , "1.0.0"
+cookbook "php"             , "1.0.0"
+cookbook "runit"           , "0.14.2"
+cookbook "user"            , "0.2.10"
+cookbook "xml"             , "1.0.0"
+cookbook "yum"             , "0.5.2"
+cookbook "zsh"             , "0.7"
+cookbook "curl"            , "1.1.0"
+cookbook "subversion"      , "1.0.0"
+
+cookbook 'sonar',
+  :git => 'git@github.com:fudriot/chef-sonar.git'
+
+#cookbook 'php-template',
+#  :git => 'git://github.com/sebastianbergmann/php-jenkins-template.git'
