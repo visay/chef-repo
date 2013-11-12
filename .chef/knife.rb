@@ -5,7 +5,7 @@ log_location             STDOUT
 
 client_key               "#{current_dir}/../certificates/client.pem"
 validation_key           "#{current_dir}/../certificates/validation.pem"
-chef_server_url          "https://chef-api.web-essentials.asia"
+chef_server_url          "https://chef.web-essentials.asia"
 
 cache_type               'BasicFile'
 cache_options(
